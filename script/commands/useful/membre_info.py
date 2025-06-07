@@ -15,7 +15,7 @@ class MemberInfoCommand(commands.Cog):
         staff_roles = [
         "Administrateur", "Modérateur", "Helper", "Responsable Staff",
         "Modérateur Sécurité", "Modérateur Aide au Besoin", "Modérateur Communication",
-        "Co-créateur||🐳", "Créateur", "Staff sieste", "BOT SUPREME", "Droïde", "Responsable technique"
+        "Co-créateur", "Créateur", "Staff sieste", "BOT SUPREME", "Droïde", "Responsable technique"
     ]
 
         is_staff = any(role.name in staff_roles for role in member.roles)
