@@ -14,10 +14,32 @@ REGIMENTS_LIST_NAME = [
     "501ème Légion", "212ème bataillon d'attaque", "41ème corps d'élite", "104ème wolfpack", "327ème corps stellaire", "Garde de Coruscant"
 ]
 GRADE_ORDER = [
-    "général", "Colonel", "Lieutenant Colonel", "Commandant", "Capitaine", "Capitaine en second",
-    "Lieutenant", "Lieutenant en second", "Major", "Major aspirant", "Adjudant chef", "Adjudant",
-    "Sergent major", "Sergent", "Caporal-chef", "Caporal", "Clone trooper", "Cadet clone trooper"
+    "Maréchal",
+    "Général",
+    "Colonel en Chef",
+    "Colonel",
+    "Lieutenant Colonel",
+    "Commandant",
+    "Capitaine",
+    "Capitaine en Second",
+    "Lieutenant en Chef",
+    "Premier Lieutenant",
+    "Lieutenant en Second",
+    "Officier Aspirant",
+    "Major",
+    "Major Aspirant",
+    "Adjudant Chef",
+    "Adjudant",
+    "Sergent Major",
+    "Sergent Chef",
+    "Sergent",
+    "Caporal-Chef",
+    "Caporal",
+    "Clone Trooper de Première Classe",
+    "Clone Trooper",
+    "Cadet Clone Trooper"
 ]
+
 
 
 # CHANNELS
