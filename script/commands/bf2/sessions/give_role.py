@@ -1,23 +1,34 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-import json
-import os
 
-from script.commands.bf2.USEFUL_IDS import ID_SESSION_PLAYER, ID_ANNONCE_SESSION, ID_ROLE_LANCEUR, CHECK_GREEN_REACT, LATE_REACT
-
-SESSION_DATA_FILE = "session_data.json"
+from script.commands.bf2.USEFUL_IDS import (
+    ID_SESSION_PLAYER,
+    ID_ANNONCE_SESSION,
+    ID_ROLE_LANCEUR,
+    ID_ESCOUADE_HEAD,
+    CHECK_GREEN_REACT,
+    LATE_REACT
+)
 
 class CommandeGiveRole(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="give-role-session", description="Donner les rôles des participants d'une session.")
-    @app_commands.describe(id="ID du message de la session.")
-    async def give_role_session(self, interaction: discord.Interaction, id: str):
-
+    @app_commands.command(
+        name="give-role-session",
+        description="Donne les rôles session + chef d’escouade."
+    )
+    @app_commands.describe(
+        id="ID du message de la session.",
+        chefs_escouades="Mentionne les chefs d’escouade."
+    )
+    async def give_role_session(self, interaction: discord.Interaction, id: str, chefs_escouades: str):
         if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
-            await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour utiliser cette commande.", ephemeral=True)
+            await interaction.response.send_message(
+                f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour utiliser cette commande.",
+                ephemeral=True
+            )
             return
 
         await interaction.response.defer(ephemeral=True)
@@ -38,39 +49,37 @@ class CommandeGiveRole(commands.Cog):
                         member_ids.add(member.id)
 
         members = [interaction.guild.get_member(uid) for uid in member_ids if interaction.guild.get_member(uid)]
+        role_player = interaction.guild.get_role(ID_SESSION_PLAYER)
+        role_head = interaction.guild.get_role(ID_ESCOUADE_HEAD)
 
-        role = interaction.guild.get_role(ID_SESSION_PLAYER)
+        count_player, count_head = 0, 0
+        failed_players, failed_heads = [], []
+
         for member in members:
             try:
-                await member.add_roles(role)
+                await member.add_roles(role_player)
+                count_player += 1
             except Exception as e:
-                print(f"Erreur lors de l'ajout du rôle à {member.display_name} : {e}")
+                failed_players.append(member.display_name)
+                print(f"Erreur rôle session ({member.display_name}) : {e}")
 
-        session_data = {}
-        try:
-            if os.path.exists(SESSION_DATA_FILE):
-                with open(SESSION_DATA_FILE, "r") as f:
-                    session_data = json.load(f)
-        except Exception as e:
-            print(f"Erreur lecture JSON : {e}")
+        for member in interaction.guild.members:
+            if f"<@{member.id}>" in chefs_escouades or f"<@!{member.id}>" in chefs_escouades:
+                try:
+                    await member.add_roles(role_head)
+                    count_head += 1
+                except Exception as e:
+                    failed_heads.append(member.display_name)
+                    print(f"Erreur rôle chef ({member.display_name}) : {e}")
 
-        session_data[id] = [member.id for member in members]
-        try:
-            with open(SESSION_DATA_FILE, "w") as f:
-                json.dump(session_data, f, indent=4)
-        except Exception as e:
-            print(f"Erreur écriture JSON : {e}")
+        desc = (
+            f"✅ Rôle <@&{ID_SESSION_PLAYER}> ajouté à **{count_player}** membre(s).\n"
+            f"👑 Rôle <@&{ID_ESCOUADE_HEAD}> ajouté à **{count_head}** chef(s) mentionné(s)."
+        )
+        if failed_players:
+            desc += f"\n⚠ Erreurs (joueurs) : {' - '.join(failed_players)}"
+        if failed_heads:
+            desc += f"\n⚠ Erreurs (chefs) : {' - '.join(failed_heads)}"
 
-        try:
-            embed = discord.Embed(
-                description=f"✅ Le rôle <@&{ID_SESSION_PLAYER}> a été ajouté à {len(members)} membre(s).",
-                color=discord.Color.green()
-            )
-        except Exception as e:
-            embed = discord.Embed(
-                description="⚠ Une erreur est survenue. Contactez Wivex.",
-                color=discord.Color.red()
-            )
-            print(f"Erreur embed : {e}")
-
+        embed = discord.Embed(description=desc, color=discord.Color.purple())
         await interaction.followup.send(embed=embed, ephemeral=True)
