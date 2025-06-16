@@ -36,8 +36,8 @@ class CommandeRemoveRole(commands.Cog):
                 if role_head in member.roles:
                     await member.remove_roles(role_head)
                     removed_head_count += 1
-            except Exception as e:
-                print(f"Erreur lors du retrait de rôles pour {member.display_name} : {e}")
+            except Exception:
+                pass
 
         embed = discord.Embed(
             title="🔴 Suppression des rôles de session",
