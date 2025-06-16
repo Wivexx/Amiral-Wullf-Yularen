@@ -47,13 +47,14 @@ class CommandeSessionLauncher(commands.Cog):
 
         embed = discord.Embed(
             title="📣 Annonce session",
-            description=(
-                f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
-                f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
-                f"🎯 **Lanceur :** {lanceur.mention}\n\n"
-            ),
             color=discord.Color.dark_blue()
         )
+        embed.add_field(name="",
+                value=(
+                    f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
+                    f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
+                    f"🎯 **Lanceur :** {lanceur.mention}\n\n"
+                ))
         if commentaire:
             embed.add_field(name="", value=f"💬 **Commentaire :** {commentaire}\n\n")
 
