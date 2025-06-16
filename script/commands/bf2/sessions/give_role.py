@@ -59,18 +59,16 @@ class CommandeGiveRole(commands.Cog):
             try:
                 await member.add_roles(role_player)
                 count_player += 1
-            except Exception as e:
+            except Exception:
                 failed_players.append(member.display_name)
-                print(f"Erreur rôle session ({member.display_name}) : {e}")
 
         for member in interaction.guild.members:
             if f"<@{member.id}>" in chefs_escouades or f"<@!{member.id}>" in chefs_escouades:
                 try:
                     await member.add_roles(role_head)
                     count_head += 1
-                except Exception as e:
+                except Exception:
                     failed_heads.append(member.display_name)
-                    print(f"Erreur rôle chef ({member.display_name}) : {e}")
 
         desc = (
             f"✅ Rôle <@&{ID_SESSION_PLAYER}> ajouté à **{count_player}** membre(s).\n"
