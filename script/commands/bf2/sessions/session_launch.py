@@ -1,3 +1,5 @@
+import random
+
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -56,8 +58,14 @@ class CommandeSessionLauncher(commands.Cog):
             embed.add_field(name="", value=f"💬 **Commentaire :** {commentaire}\n\n")
 
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
-
-        embed.set_image(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperset.com%2Fw%2Ffull%2F4%2F7%2Fb%2F40696.jpg&f=1&nofb=1&ipt=52262c5ce229f7b82cfc67dc9d30700e3634fdc1c19fd3a413dc810ad3d4bace&ipo=images")
+        session_pics = [
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.EYnEMKDumO_MzcqSicvv7gHaDt%26pid%3DApi&f=1&ipt=6985444a0cf7c83e83c8b051c7e843f2dc8f6a19b0abc7739ca2c2ec24428c91&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.gjmozccI4rSTnt3GRfOd9QHaEK%26pid%3DApi&f=1&ipt=c4b96d57a0ca49e2dfb050f9847758c92e21c1d5499ac241496acf9d21ed4517&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.XtXlNCZ5Ao6jpXIvo33PDAHaEK%26pid%3DApi&f=1&ipt=c2782efe38919d9e0090ae7bb14cfa6f3bd92aaa8ecfa10da5c3eee6e597ccc6&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.Dnp2-Gex2LcaQosdbqKLmQHaDt%26pid%3DApi&f=1&ipt=d7c3689de14ea7540e19f17c060c90bd999c2f5a9195887df0764d21cd07ad43&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.yzKbQbDV5aXuQwTWN0HKmwHaEK%26pid%3DApi&f=1&ipt=122ea1110b58d2758210667f5c82b0c233f6576948ffad0c3dfb5fd5e7e485d4&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.R7QYN-TV52MeZ_yQw3NNogHaEK%26pid%3DApi&f=1&ipt=46181f99f47209cfe65c5a02f6a754a0a898c07b9dcc409fcd7b56e706379765&ipo=images"]
+        embed.set_image(url=random.choice(session_pics))
 
         await interaction.response.send_message(
             content=f"⚠️ Es-tu sûr de vouloir lancer cette session ? Relis bien les infos avant de valider.\n<@&{ID_ROLE_REPUBLIQUE}>",
