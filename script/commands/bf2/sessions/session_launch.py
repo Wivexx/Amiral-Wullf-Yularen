@@ -49,14 +49,14 @@ class CommandeSessionLauncher(commands.Cog):
             title="📣 Annonce session",
             color=discord.Color.dark_blue()
         )
+        comment = "" if not commentaire else f"💬 **Commentaire :** {commentaire}\n\n"
         embed.add_field(name="",
                 value=(
                     f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
                     f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
                     f"🎯 **Lanceur :** {lanceur.mention}\n\n"
+                    f"{comment}"
                 ))
-        if commentaire:
-            embed.add_field(name="", value=f"💬 **Commentaire :** {commentaire}\n\n")
 
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
         session_pics = [
@@ -88,7 +88,7 @@ class ConfirmationView(discord.ui.View):
 
         view = discord.ui.View()
         view.add_item(discord.ui.Button(
-            label="📲 À ajouter",
+            label="📲 Lanceurs de session",
             url="https://discord.com/channels/947567879442812928/1231619386649870336",
             style=discord.ButtonStyle.link
         ))
