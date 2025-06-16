@@ -56,3 +56,20 @@ CHECK_GREEN_REACT = "✅"
 LATE_REACT = "🕑"
 RED_CROSS_REACT = "❌"
 IDK_REACT = "🤷‍♂️"
+
+
+
+# OTHER
+session_pics = [
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.EYnEMKDumO_MzcqSicvv7gHaDt%26pid%3DApi&f=1&ipt=6985444a0cf7c83e83c8b051c7e843f2dc8f6a19b0abc7739ca2c2ec24428c91&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.gjmozccI4rSTnt3GRfOd9QHaEK%26pid%3DApi&f=1&ipt=c4b96d57a0ca49e2dfb050f9847758c92e21c1d5499ac241496acf9d21ed4517&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.XtXlNCZ5Ao6jpXIvo33PDAHaEK%26pid%3DApi&f=1&ipt=c2782efe38919d9e0090ae7bb14cfa6f3bd92aaa8ecfa10da5c3eee6e597ccc6&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.Dnp2-Gex2LcaQosdbqKLmQHaDt%26pid%3DApi&f=1&ipt=d7c3689de14ea7540e19f17c060c90bd999c2f5a9195887df0764d21cd07ad43&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.yzKbQbDV5aXuQwTWN0HKmwHaEK%26pid%3DApi&f=1&ipt=122ea1110b58d2758210667f5c82b0c233f6576948ffad0c3dfb5fd5e7e485d4&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.R7QYN-TV52MeZ_yQw3NNogHaEK%26pid%3DApi&f=1&ipt=46181f99f47209cfe65c5a02f6a754a0a898c07b9dcc409fcd7b56e706379765&ipo=images",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp9540169.jpg&f=1&nofb=1&ipt=ac7899d8a008145e8a028dce2f78d03e786879fe5cd5279114f1d3306df24294",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages2.alphacoders.com%2F113%2F1131551.jpg&f=1&nofb=1&ipt=bbf04c06abc387c3d64d6c613016ea280fe82920d26ee3c15601c63562b07387",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F16%2F25%2FJwDvs6.png&f=1&nofb=1&ipt=5fe81ea56eb632e6ec26bc685459e936eecdd166ce93bb74519ea78b2b0a391b",
+            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F7%2F7%2F0%2F248621.jpg&f=1&nofb=1&ipt=be0e7e8c976c41cc459497479ebf918dc96bee26d2fbe681a8dc88f6bf506320",
+            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdqwalls.com%2Fwallpapers%2Fclone-trooper-star-wars-yp.jpg&f=1&nofb=1&ipt=fa5c3ede3981839af01b98a7f6b85dfabcde43898939f56176bd02d6f6178ecf",
+            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F3%2Fb%2Fe%2F247955.jpg&f=1&nofb=1&ipt=d016220c3a6e6a416df38b56c6ab36383f92b86af67d1654f632934c2bb37150"]
