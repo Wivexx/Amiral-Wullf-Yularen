@@ -68,8 +68,9 @@ class CommandeSessionModifier(commands.Cog):
             embed.add_field(name="", value=f"💬 **Commentaire :** {commentaire}\n\n")
 
         embed.set_footer(text=f"Modifié par {interaction.user}", icon_url=interaction.user.display_avatar.url)
-        embed.set_image(
-            url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperset.com%2Fw%2Ffull%2F4%2F7%2Fb%2F40696.jpg&f=1&nofb=1&ipt=52262c5ce229f7b82cfc67dc9d30700e3634fdc1c19fd3a413dc810ad3d4bace&ipo=images")
+
+        if message.embeds and message.embeds[0].image and message.embeds[0].image.url:
+            embed.set_image(url=message.embeds[0].image.url)
 
         await interaction.response.send_message(
             content=f"⚠️ Es-tu sûr de vouloir modifier ce message ? Relis bien les infos avant de valider.\nID : `{message_id}`",
