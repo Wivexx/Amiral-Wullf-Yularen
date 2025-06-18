@@ -72,7 +72,7 @@ class CommandeGiveRole(commands.Cog):
         title = f"🟢 Ajout des rôles de session\n"
         desc = (
             f"→ <@&{ID_SESSION_PLAYER}> ajouté à **{count_player}** membre(s)\n"
-            f"→ <@&{ID_ESCOUADE_HEAD}> ajouté à **{count_head}** chef(s)"
+            f"→ <@&{ID_ESCOUADE_HEAD}> ajouté à **{count_head}** membre(s)"
         )
         if failed_players:
             desc += f"\n⚠ Erreurs (joueurs) : {' - '.join(failed_players)}"
