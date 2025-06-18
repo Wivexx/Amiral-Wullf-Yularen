@@ -79,5 +79,5 @@ class CommandeGiveRole(commands.Cog):
         if failed_heads:
             desc += f"\n⚠ Erreurs (chefs) : {' - '.join(failed_heads)}"
 
-        embed = discord.Embed(title=title, description=desc, color=discord.Color.purple())
+        embed = discord.Embed(title=title, description=desc, color=discord.Color.green())
         await interaction.followup.send(embed=embed, ephemeral=True)
