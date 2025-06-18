@@ -69,15 +69,15 @@ class CommandeGiveRole(commands.Cog):
                     count_head += 1
                 except Exception:
                     failed_heads.append(member.display_name)
-
+        title = f"🟢 Ajout des rôles de session\n"
         desc = (
-            f"✅ Rôle <@&{ID_SESSION_PLAYER}> ajouté à **{count_player}** membre(s).\n"
-            f"👑 Rôle <@&{ID_ESCOUADE_HEAD}> ajouté à **{count_head}** chef(s) mentionné(s)."
+            f"→ <@&{ID_SESSION_PLAYER}> ajouté à **{count_player}** membre(s)\n"
+            f"→ <@&{ID_ESCOUADE_HEAD}> ajouté à **{count_head}** chef(s)"
         )
         if failed_players:
             desc += f"\n⚠ Erreurs (joueurs) : {' - '.join(failed_players)}"
         if failed_heads:
             desc += f"\n⚠ Erreurs (chefs) : {' - '.join(failed_heads)}"
 
-        embed = discord.Embed(description=desc, color=discord.Color.purple())
+        embed = discord.Embed(title=title, description=desc, color=discord.Color.purple())
         await interaction.followup.send(embed=embed, ephemeral=True)
