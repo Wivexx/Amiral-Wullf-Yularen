@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
-from script.commands.bf2.USEFUL_IDS import GRADE_ORDER
+from script.commands.bf2.USEFUL_IDS import GRADE_ORDER, REGIMENTS_LIST_ROLE
 
 class MemberInfoCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -75,9 +75,7 @@ class MemberInfoCommand(commands.Cog):
                                "Recrue SOLDAT CRA", "Recrue COMMANDO CLONE", "Recrue JET-TROOPER",
                                "Recrue wookiee"]:
                 specialite.append(safe_mention(role))
-            elif role.name in ["chef de régiment", "second de régiment", "501ème Légion", "Garde de Coruscant",
-                               "104ème wolfpack", "327ème corps stellaire", "212ème bataillon d'attaque",
-                               "41ème corps d'élite", "Pilote de char"]:
+            elif role.name in REGIMENTS_LIST_ROLE:
                 regiment.append(safe_mention(role))
             elif role.name in GRADE_ORDER:
                 grade_clone.append(safe_mention(role))
