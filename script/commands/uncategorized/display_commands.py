@@ -1,22 +1,24 @@
 import discord
 from discord.ext import commands
-from script.commands.bf2.USEFUL_IDS import ID_ROLE_STAFF, ID_ROLE_LANCEUR
+from script.commands.bf2.USEFUL_IDS import ID_ROLE_STAFF, ID_ROLE_LANCEUR, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_FORMATEUR_JET
 
 
 class DisplayCommandsView(discord.ui.View):
-    def __init__(self, is_staff: bool, is_lanceur: bool, active_page: str = "default"):
+    def __init__(self, is_staff: bool, is_lanceur: bool, is_formateur: bool, active_page: str = "default"):
         super().__init__(timeout=None)
 
         self.active_page = active_page
         self.is_staff = is_staff
         self.is_lanceur = is_lanceur
+        self.is_formateur = is_formateur
 
         self.add_item(DefaultButton(disabled=(active_page == "default")))
         if is_lanceur:
             self.add_item(SessionButton(disabled=(active_page == "session")))
         if is_staff:
             self.add_item(StaffButton(disabled=(active_page == "staff")))
-
+        if is_formateur:
+            self.add_item(FormateurButton(disabled=(active_page == "formateur")))
 
 class DefaultButton(discord.ui.Button):
     def __init__(self, disabled=False):
@@ -60,13 +62,14 @@ class DefaultButton(discord.ui.Button):
                               "`/membre-info`",
                         inline=False)
 
-        embed.set_footer(text="Total commands: 21")
+        embed.set_footer(text="Total commandes: 21")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
 
-        view = DisplayCommandsView(is_staff, is_lanceur, active_page="default")
+        view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, active_page="default")
         await interaction.response.edit_message(embed=embed, view=view)
 
 
@@ -93,13 +96,14 @@ class SessionButton(discord.ui.Button):
             inline=False
         )
 
-        embed.set_footer(text="Total commands: 5")
+        embed.set_footer(text="Total commandes: 5")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
 
-        view = DisplayCommandsView(is_staff, is_lanceur, active_page="session")
+        view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, active_page="session")
         await interaction.response.edit_message(embed=embed, view=view)
 
 
@@ -132,13 +136,43 @@ class StaffButton(discord.ui.Button):
                               "`/clear`\n",
                         inline=False
         )
-        embed.set_footer(text="Total commands: 6")
+        embed.set_footer(text="Total commandes: 6")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
 
-        view = DisplayCommandsView(is_staff, is_lanceur, active_page="staff")
+        view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, active_page="staff")
+        await interaction.response.edit_message(embed=embed, view=view)
+
+class FormateurButton(discord.ui.Button):
+    def __init__(self, disabled=False):
+        super().__init__(
+            label="Commandes formateurs",
+            style=discord.ButtonStyle.green,
+            custom_id="session_formateur_commands",
+            disabled=disabled
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+        embed = discord.Embed(
+            title="",
+            color=discord.Color.green()
+        )
+        embed.add_field(name="Commandes :", value=
+            "`/session-formation`\n",
+            inline=False
+        )
+
+        embed.set_footer(text="Total commandes: 1")
+
+        user_roles_ids = [role.id for role in interaction.user.roles]
+        is_staff = ID_ROLE_STAFF in user_roles_ids
+        is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+
+        view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, active_page="formateur")
         await interaction.response.edit_message(embed=embed, view=view)
 
 
@@ -180,13 +214,14 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/membre-info`",
                         inline=False)
 
-        embed.set_footer(text="Total commands: 21")
+        embed.set_footer(text="Total commandes: 21")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
 
-        if is_staff or is_lanceur:
-            view = DisplayCommandsView(is_staff, is_lanceur, active_page="default")
+        if is_staff or is_lanceur or is_formateur:
+            view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, active_page="default")
             await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
         else: await interaction.response.send_message(embed=embed, ephemeral=True)
