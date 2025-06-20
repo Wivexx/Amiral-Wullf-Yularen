@@ -1,7 +1,9 @@
 # ROLES
 ID_ROLE_REPUBLIQUE = 947568908490125362
 ID_ROLE_LANCEUR = 1212078209210908672
-ID_ROLE_STAFF = 1355647504552693939
+ID_ROLE_FORMATEUR_JET = 1192188788726845530
+ID_ROLE_FORMATEUR_COMMANDO = 1192189518527332372
+ID_ROLE_STAFF = 962630827232096308
 ID_CADET_CLONE_TROOPER_ROLE = 962320562691141714
 ID_HELPER = 983131549597831188
 ID_ROLE_CANDA = 982999617035698196
@@ -48,6 +50,7 @@ GRADE_ORDER = [
 
 # CHANNELS
 ID_ANNONCE_SESSION = 962314973214826526
+ID_ANNONCE_SESSION_FORMATION = 1329545998262865940
 ID_LANCEMENT_SESSION = 1113561122293944430
 ID_COMMANDS_LOGS = 1290396091476607006
 ID_MOD_LOGS = 1224262061366710274
@@ -75,4 +78,17 @@ session_pics = [
             "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F16%2F25%2FJwDvs6.png&f=1&nofb=1&ipt=5fe81ea56eb632e6ec26bc685459e936eecdd166ce93bb74519ea78b2b0a391b",
             "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F7%2F7%2F0%2F248621.jpg&f=1&nofb=1&ipt=be0e7e8c976c41cc459497479ebf918dc96bee26d2fbe681a8dc88f6bf506320",
             "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdqwalls.com%2Fwallpapers%2Fclone-trooper-star-wars-yp.jpg&f=1&nofb=1&ipt=fa5c3ede3981839af01b98a7f6b85dfabcde43898939f56176bd02d6f6178ecf",
-            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F3%2Fb%2Fe%2F247955.jpg&f=1&nofb=1&ipt=d016220c3a6e6a416df38b56c6ab36383f92b86af67d1654f632934c2bb37150"]
+            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F3%2Fb%2Fe%2F247955.jpg&f=1&nofb=1&ipt=d016220c3a6e6a416df38b56c6ab36383f92b86af67d1654f632934c2bb37150"
+]
+
+session_forma_commando_pics = [
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2021%2F04%2FStar-Wars-Republic-Commando-Battlefront-2.jpg&f=1&nofb=1&ipt=81dbd7828aa841c55b0544f6438f5415641c91b82376cb5614be5327d25c5da8",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fvtok4mcnmzb31.jpg&f=1&nofb=1&ipt=e6d3e08bbb717d41b95f5f76d40c417ebea6ec0a9ee69a71c131aea6b2f998a3",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fe8%2F18%2F3f%2Fe8183f3cb074e8139b797bfcfce8a27a.jpg&f=1&nofb=1&ipt=bd539878b2bd384625b661456d13304680b3f19913fac40e77fbd7ffb203c163"
+]
+
+session_forma_jet_pics = [
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fscdae0imnaa11.png&f=1&nofb=1&ipt=1b52da7adb52eb052097b404f7b80c1a58094a3acfb44bc057b4092975d6c6d8",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpm1.narvii.com%2F6492%2F830557f120e592038325eaba401ec252ff164560_hq.jpg&f=1&nofb=1&ipt=e7173fd4539bc76c7a9bef6135b649ff1922821a59f8aa7984fcec480cf0d61d",
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fstar-wars-clone-troopers-7s7gmyb3d2xcdaqg.jpg&f=1&nofb=1&ipt=dbde5a4a8dcc07c6a4143ebcdae81a13ac05eee839d8d59ffa7ca2b951b323b0"
+]
