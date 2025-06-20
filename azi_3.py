@@ -30,6 +30,8 @@ from script.commands.bf2.sessions.escouade import EscouadeCommand
 from script.commands.bf2.sessions.give_role import CommandeGiveRole
 from script.commands.bf2.sessions.remove_role import CommandeRemoveRole
 
+from script.commands.bf2.sessions.sessions_formations.session_formation_launch import CommandeSessionFormationLauncher
+
 from script.commands.bf2.moderation.report import ReportCommand
 
 from script.commands.bf2.server_stats import CommandeServeurStats
@@ -73,6 +75,8 @@ COMMANDS = [
     EscouadeCommand,
     CommandeGiveRole,
     CommandeRemoveRole,
+
+    CommandeSessionFormationLauncher,
 
     ReportCommand,
 
