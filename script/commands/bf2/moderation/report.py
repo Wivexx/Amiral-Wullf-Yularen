@@ -4,7 +4,7 @@ import os
 from discord.ext import commands
 from discord import app_commands
 from datetime import datetime
-from script.commands.bf2.USEFUL_IDS import ID_COMMANDS_LOGS, ID_LOGS_HAUT_STAFF
+from script.commands.bf2.USEFUL_IDS import ID_LOGS, ID_LOGS_HAUT_STAFF
 
 REPORTS_FILE = "reports.json"
 
@@ -76,7 +76,7 @@ class ReportCommand(commands.Cog):
             embed_non_anonyme.add_field(name="Raison", value=raison, inline=False)
             embed_non_anonyme.set_footer(text=footer)
 
-            log_channel = self.bot.get_channel(ID_COMMANDS_LOGS)
+            log_channel = self.bot.get_channel(ID_LOGS)
             log_channel_high_staff = self.bot.get_channel(ID_LOGS_HAUT_STAFF)
 
             if log_channel and log_channel_high_staff:
