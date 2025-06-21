@@ -9,7 +9,7 @@ import os
 
 import discord
 from discord.ext import commands
-from script.commands.bf2.USEFUL_IDS import ID_COMMANDS_LOGS, ID_CADET_CLONE_TROOPER_ROLE, ID_COMPTE_DE_SESSION, ID_MOD_LOGS, ID_HELPER, IDS_WHITE_LISTES
+from script.commands.bf2.USEFUL_IDS import ID_LOGS, ID_CADET_CLONE_TROOPER_ROLE, ID_COMPTE_DE_SESSION, ID_HELPER, IDS_WHITE_LISTES
 
 
 
@@ -105,7 +105,7 @@ def setup_events(bot: commands.Bot):
             }
         ]
 
-        CHANNEL_LOGS = bot.get_channel(ID_COMMANDS_LOGS)
+        CHANNEL_LOGS = bot.get_channel(ID_LOGS)
 
         async def check_link():
             white_list_link_list = [
@@ -207,8 +207,8 @@ def setup_events(bot: commands.Bot):
         if "you were the chosen one" in message.content.lower().strip() and message.channel.id == 962314938079121428:
             try:
 
-                obiwan_webhook = ""
-                anakin_webhook = ""
+                obiwan_webhook = "https://discord.com/api/webhooks/1370685076651638794/aFamhlc1mxLU0yNS5sLcgYNWM_zb2lz4XUNpzqoPszh7AFJ_CMibRZtIlEokC7Txzv40"
+                anakin_webhook = "https://discord.com/api/webhooks/1370687006878990416/Qj3zMjbGDwhcMW0H7ANg-aJfMDCC7khszkUoFUIMg95x2Xlbmv_rIouMwCsq2bYehCyz"
 
                 obiwan_lines = [
                     "It was said that you would destroy the Sith, not join them !",
@@ -255,7 +255,7 @@ def setup_events(bot: commands.Bot):
     @bot.event
     async def on_voice_state_update(member, before, after):
 
-        CHANNEL_LOGS = bot.get_channel(ID_COMMANDS_LOGS)
+        CHANNEL_LOGS = bot.get_channel(ID_LOGS)
 
         role = discord.utils.get(member.guild.roles, id=ID_HELPER)
         embed_color = role.color if role else discord.Color.default()
@@ -307,7 +307,7 @@ def setup_events(bot: commands.Bot):
         EVERYTIME_ALLOWED_CHANNEL = [962314997646643220, 962314973214826526, 1004525840056467477, 1100867195707342938, 1078387595584753788, 1100895296613003275, 996213406879187054]
 
 
-        CHANNEL_LOGS = bot.get_channel(ID_COMMANDS_LOGS)
+        CHANNEL_LOGS = bot.get_channel(ID_LOGS)
 
 
         # FOR BANNED PEOPLE COMMUNITY
