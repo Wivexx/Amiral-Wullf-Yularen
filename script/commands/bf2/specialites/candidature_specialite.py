@@ -5,7 +5,7 @@ from discord.ui import Button, View
 from script.commands.bf2.USEFUL_IDS import (ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
                                             ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
                                             ID_ROLE_SPECIALITE,
-                                            ID_COMMANDS_LOGS)
+                                            ID_LOGS)
 
 class CandidatureSpecialiteCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -44,7 +44,7 @@ class CandidatureSpecialiteCommand(commands.Cog):
                                              color=discord.Color.green())
             embed_validation.set_footer(text=f"Acceptée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
             await interaction.response.send_message(f"{member.mention}", embed=embed_validation)
-            channel = self.bot.get_channel(ID_COMMANDS_LOGS)
+            channel = self.bot.get_channel(ID_LOGS)
 
             return await channel.send(f"{member.mention} a été accepté pour devenir :\n{recrue.value}\n")
 
