@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from script.commands.bf2.USEFUL_IDS import ID_ROLE_STAFF, ID_COMMANDS_LOGS
+from script.commands.bf2.USEFUL_IDS import ID_ROLE_STAFF, ID_LOGS
 import os
 
 current_dir = os.path.dirname(__file__)
@@ -50,7 +50,7 @@ class BlacklistCommand(commands.Cog):
         membre: discord.Member = None
     ):
         black_list_members = read_blacklist()
-        channel_log = self.bot.get_channel(ID_COMMANDS_LOGS)
+        channel_log = self.bot.get_channel(ID_LOGS)
 
         if not any(role.id == ID_ROLE_STAFF for role in interaction.user.roles):
             await interaction.response.send_message(
