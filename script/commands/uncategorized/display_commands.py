@@ -84,7 +84,7 @@ class DefaultButton(discord.ui.Button):
 class SessionButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="Commandes lanceur de session",
+            label="👥 Commandes lanceur de session",
             style=discord.ButtonStyle.green,
             custom_id="session_commands",
             disabled=disabled
@@ -119,7 +119,7 @@ class SessionButton(discord.ui.Button):
 class StaffButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="Commandes du staff",
+            label="🛠 Commandes du staff",
             style=discord.ButtonStyle.blurple,
             custom_id="staff_commands",
             disabled=disabled
@@ -159,7 +159,7 @@ class StaffButton(discord.ui.Button):
 class FormateurButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="Commandes formateurs",
+            label="🪖 Commandes formateurs",
             style=discord.ButtonStyle.green,
             custom_id="formateurs_commands",
             disabled=disabled
@@ -191,7 +191,7 @@ class FormateurButton(discord.ui.Button):
 class RegimentButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="Commandes chefs de regiment",
+            label="🧌 Commandes chefs de regiment",
             style=discord.ButtonStyle.grey,
             custom_id="reg_commands",
             disabled=disabled
