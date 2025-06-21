@@ -17,7 +17,7 @@ REGIMENTS_LIST_NAME = [
     "501ème Légion", "212ème bataillon d'attaque", "41ème corps d'élite", "104ème wolfpack", "327ème corps stellaire", "Garde de Coruscant"
 ]
 
-REGIMENTS_LIST_ROLE = [REGIMENTS_LIST_NAME, "chef de régiment", "second de régiment", "Commandant des opérations", "Pilote de char"]
+REGIMENTS_LIST_ROLE = REGIMENTS_LIST_NAME + ["chef de régiment", "second de régiment", "Commandant des opérations", "Pilote de char"]
 
 GRADE_ORDER = [
     "Maréchal",
