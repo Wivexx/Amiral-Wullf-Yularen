@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from script.commands.bf2.USEFUL_IDS import ID_COMMANDS_LOGS
+from script.commands.bf2.USEFUL_IDS import ID_LOGS
 
 class BanCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -29,6 +29,6 @@ class BanCommand(commands.Cog):
         embed = discord.Embed(color=discord.Color.dark_red())
         embed.add_field(name=f"{member.name} a été banni", value=f"**Raison :** {raison}\n**Par :** <@{interaction.user.id}>", inline=False)
 
-        log_channel = self.bot.get_channel(ID_COMMANDS_LOGS)
+        log_channel = self.bot.get_channel(ID_LOGS)
         if log_channel:
             await log_channel.send(embed=embed)
