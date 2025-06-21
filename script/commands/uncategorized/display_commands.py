@@ -75,7 +75,7 @@ class DefaultButton(discord.ui.Button):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="default")
         await interaction.response.edit_message(embed=embed, view=view)
@@ -110,7 +110,7 @@ class SessionButton(discord.ui.Button):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="session")
         await interaction.response.edit_message(embed=embed, view=view)
@@ -151,7 +151,7 @@ class StaffButton(discord.ui.Button):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="staff")
         await interaction.response.edit_message(embed=embed, view=view)
@@ -182,7 +182,7 @@ class FormateurButton(discord.ui.Button):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="formateur")
         await interaction.response.edit_message(embed=embed, view=view)
@@ -213,7 +213,7 @@ class RegimentButton(discord.ui.Button):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="regiment")
         await interaction.response.edit_message(embed=embed, view=view)
@@ -263,7 +263,7 @@ class DisplayCommandsCommand(commands.Cog):
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
         is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
-        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP
+        is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         if is_staff or is_lanceur or is_formateur:
             view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="default")
