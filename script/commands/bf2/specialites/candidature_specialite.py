@@ -39,7 +39,7 @@ class CandidatureSpecialiteCommand(commands.Cog):
             await member.add_roles(interaction.guild.get_role(ID_ROLE_SPECIALITE))
 
             embed_validation = discord.Embed(title="Candidature spécialité acceptée",
-                                             description=f"Soldat {member.mention}, vous avez été __**accepté**__ pour devenir : \n**{recrue.value}**\n"
+                                             description=f"Soldat {member.mention}, vous avez été __**accepté**__ pour devenir : \n__**{recrue.value}**__\n"
                                                          "Mes félicitations !\n",
                                              color=discord.Color.green())
             embed_validation.set_footer(text=f"Acceptée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
