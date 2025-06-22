@@ -25,17 +25,16 @@ class CandidatureRegimentCommand(commands.Cog):
                 ephemeral=True)
 
         if validation:
-            regiment_name: str = ""
+            role_to_add = discord.Object
             for role in interaction.user.roles:
                 if role.name in REGIMENTS_LIST_NAME:
-                    regiment_name = role.name
                     role_to_add = interaction.guild.get_role(role.id)
                     await member.add_roles(role_to_add)
                     await member.add_roles(interaction.guild.get_role(ID_ROLE_REGIMENT))
                     break
 
             embed_validation = discord.Embed(title="Candidature régiment acceptée",
-                                             description=f"Soldat {member.mention}, vous avez été __**accepté**__ dans le régiment : **{regiment_name}**\n"
+                                             description=f"Soldat {member.mention}, vous avez été __**accepté**__ dans le régiment : **{role_to_add.mention}**\n"
                                                          "Mes félicitations !\n",
                                              color=discord.Color.green())
             embed_validation.add_field(name="🔗 Invitation", value=f"D'ici peu de temps, {interaction.user.mention} devrait vous envoyer en privé l'invitation pour rejoindre le serveur du régiment.")
