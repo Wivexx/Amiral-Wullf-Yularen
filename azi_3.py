@@ -24,13 +24,17 @@ from script.commands.bf2.moderation.black_list.black_list import BlacklistComman
 from script.commands.bf2.moderation.secu_moderation.ban import BanCommand
 from script.commands.bf2.moderation.secu_moderation.kick import KickCommand
 
+from script.commands.bf2.regiment.candidature_regiment import CandidatureRegimentCommand
+
 from script.commands.bf2.sessions.session_launch import CommandeSessionLauncher
 from script.commands.bf2.sessions.modifier_session import CommandeSessionModifier
 from script.commands.bf2.sessions.escouade import EscouadeCommand
 from script.commands.bf2.sessions.give_role import CommandeGiveRole
 from script.commands.bf2.sessions.remove_role import CommandeRemoveRole
 
-from script.commands.bf2.sessions.sessions_formations.session_formation_launch import CommandeSessionFormationLauncher
+from script.commands.bf2.specialites.candidature_specialite import CandidatureSpecialiteCommand
+from script.commands.bf2.specialites.session_formation_launch import CommandeSessionFormationLauncher
+from script.commands.bf2.specialites.specialite_validation import SpecialiteValidationCommand
 
 from script.commands.bf2.moderation.report import ReportCommand
 
@@ -70,13 +74,17 @@ COMMANDS = [
     ClearCommand,
     BlacklistCommand,
 
+    CandidatureRegimentCommand,
+
     CommandeSessionLauncher,
     CommandeSessionModifier,
     EscouadeCommand,
     CommandeGiveRole,
     CommandeRemoveRole,
 
+    CandidatureSpecialiteCommand,
     CommandeSessionFormationLauncher,
+    SpecialiteValidationCommand,
 
     ReportCommand,
 
