@@ -2,7 +2,9 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
-from script.commands.bf2.USEFUL_IDS import ID_ROLE_CHEF_REGIMENT, ID_ROLE_SECOND_REGIMENT, ID_ROLE_COMMANDANT_OP, REGIMENTS_LIST_NAME, ID_ROLE_REGIMENT
+from script.commands.bf2.USEFUL_IDS import (ID_ROLE_CHEF_REGIMENT, ID_ROLE_SECOND_REGIMENT, ID_ROLE_COMMANDANT_OP,
+                                            REGIMENTS_LIST_NAME, ID_ROLE_REGIMENT,
+                                            ID_ROLE_GARDE, ID_ROLE_ELITE)
 
 class CandidatureRegimentCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -28,6 +30,8 @@ class CandidatureRegimentCommand(commands.Cog):
             role_to_add = discord.Object
             for role in interaction.user.roles:
                 if role.name in REGIMENTS_LIST_NAME:
+                    if role.id == ID_ROLE_GARDE:
+                        await member.add_roles(interaction.guild.get_role(ID_ROLE_ELITE))
                     role_to_add = interaction.guild.get_role(role.id)
                     await member.add_roles(role_to_add)
                     await member.add_roles(interaction.guild.get_role(ID_ROLE_REGIMENT))
