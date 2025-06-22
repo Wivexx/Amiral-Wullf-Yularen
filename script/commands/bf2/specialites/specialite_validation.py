@@ -46,7 +46,7 @@ class SpecialiteValidationCommand(commands.Cog):
         await member.add_roles(interaction.guild.get_role(ID_ROLE_JET if for_recrue_jet else ID_ROLE_COMMANDO))
         await member.add_roles(interaction.guild.get_role(ID_ROLE_SPECIALITE))
 
-        if is_recrue_jet: await member.remove_roles(interaction.guild.get_role((ID_ROLE_RECRUE_JET if for_recrue_jet else ID_ROLE_RECRUE_COMMANDO)))
+        await member.remove_roles(interaction.guild.get_role((ID_ROLE_RECRUE_JET if for_recrue_jet else ID_ROLE_RECRUE_COMMANDO)))
 
         embed_validation = discord.Embed(title="Spécialité validée",
                                          description=f"{member.mention} a obtenu le rôle <@&{ID_ROLE_JET if for_recrue_jet else ID_ROLE_COMMANDO}>\n"
