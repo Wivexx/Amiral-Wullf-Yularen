@@ -33,6 +33,8 @@ IDS_WHITE_LISTES = [963233993808023563, 1213070974715691008, 1330544213401534464
 REGIMENTS_LIST_NAME = [
     "501ème Légion", "212ème bataillon d'attaque", "41ème corps d'élite", "104ème wolfpack", "327ème corps stellaire", "Garde de Coruscant"
 ]
+ID_ROLE_GARDE = 1215072659608702977
+ID_ROLE_ELITE = 1215074868345962546
 
 REGIMENTS_LIST_ROLE = REGIMENTS_LIST_NAME + ["chef de régiment", "second de régiment", "Commandant des opérations", "Pilote de char"]
 
