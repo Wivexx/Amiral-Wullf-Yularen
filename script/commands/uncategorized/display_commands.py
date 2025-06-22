@@ -119,7 +119,7 @@ class SessionButton(discord.ui.Button):
 class StaffButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="🛠 Commandes du staff",
+            label="🛠 Commandes staff",
             style=discord.ButtonStyle.blurple,
             custom_id="staff_commands",
             disabled=disabled
@@ -172,11 +172,12 @@ class FormateurButton(discord.ui.Button):
         )
         embed.add_field(name="Commandes :", value=
             "`/session-formation`\n"
-            "`/candidature-specialite`\n",
+            "`/candidature-specialite`\n"
+            "`/specialite-validation`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 2")
+        embed.set_footer(text="Total commandes: 3")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
