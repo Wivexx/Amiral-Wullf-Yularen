@@ -38,10 +38,10 @@ class SpecialiteValidationCommand(commands.Cog):
             if role.id == ID_ROLE_RECRUE_COMMANDO: is_recrue_commando = True
         if for_recrue_jet and not is_recrue_jet:
             return await interaction.response.send_message(
-                f"Vous ne pouvez valider ou non la spécialité que si {member.mention} est <@&{ID_ROLE_RECRUE_JET}>.", ephemeral=True)
+                f"Vous ne pouvez valider la spécialité que si {member.mention} est <@&{ID_ROLE_RECRUE_JET}>.", ephemeral=True)
         if not for_recrue_jet and not is_recrue_commando:
             return await interaction.response.send_message(
-                f"Vous ne pouvez valider ou non la spécialité que si {member.mention} est <@&{ID_ROLE_RECRUE_COMMANDO}>.", ephemeral=True)
+                f"Vous ne pouvez valider la spécialité que si {member.mention} est <@&{ID_ROLE_RECRUE_COMMANDO}>.", ephemeral=True)
 
         await member.add_roles(interaction.guild.get_role(ID_ROLE_JET if for_recrue_jet else ID_ROLE_COMMANDO))
         await member.add_roles(interaction.guild.get_role(ID_ROLE_SPECIALITE))
