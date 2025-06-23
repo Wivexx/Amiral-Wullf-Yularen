@@ -4,7 +4,9 @@ from discord import app_commands
 from discord.ui import Button, View
 from script.commands.bf2.USEFUL_IDS import (ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
                                             ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                                            ID_ROLE_SPECIALITE,
+                                            ID_ROLE_CRA, ID_ROLE_COMMANDO, ID_ROLE_JET,
+                                            ID_ROLE_SPECIALITE, ID_ROLE_DOUBLE_SPE,
+                                            ID_ROLE_GARDE,
                                             ID_LOGS)
 
 class CandidatureSpecialiteCommand(commands.Cog):
@@ -34,6 +36,34 @@ class CandidatureSpecialiteCommand(commands.Cog):
                 ephemeral=True)
 
         if validation:
+            member_roles = member.roles
+            role_ids = [role.id for role in member_roles]
+
+            has_garde = ID_ROLE_GARDE in role_ids
+            has_commando = ID_ROLE_RECRUE_COMMANDO in role_ids or ID_ROLE_COMMANDO in role_ids
+            has_jet = ID_ROLE_JET in role_ids or ID_ROLE_RECRUE_JET in role_ids
+            has_cra = ID_ROLE_CRA in role_ids
+
+            if (has_jet and is_recrue_jet) or (has_commando and not is_recrue_jet):
+                return await interaction.response.send_message(
+                    f"{member.mention} possède déjà la spécialité.",
+                    ephemeral=True)
+
+            if not has_garde and (has_commando or has_jet or has_cra):
+                return await interaction.response.send_message(
+                    f"Seuls les membres de la <@&{ID_ROLE_GARDE}> peuvent posséder une spécialité double.",
+                    ephemeral=True
+                )
+
+            if has_cra + has_jet + has_commando == 2:
+                return await interaction.response.send_message(
+                    f"{member.mention} possède déjà la spécialité double.",
+                    ephemeral=True
+                )
+
+            if has_garde and (has_commando or has_jet or has_cra):
+                await member.add_roles(interaction.guild.get_role(ID_ROLE_DOUBLE_SPE))
+
             role_to_add = interaction.guild.get_role(ID_ROLE_RECRUE_JET if is_recrue_jet else ID_ROLE_RECRUE_COMMANDO)
             await member.add_roles(role_to_add)
             await member.add_roles(interaction.guild.get_role(ID_ROLE_SPECIALITE))
@@ -42,11 +72,13 @@ class CandidatureSpecialiteCommand(commands.Cog):
                                              description=f"Soldat {member.mention}, vous avez été __**accepté**__ pour devenir : \n__**{recrue.value}**__\n"
                                                          "Mes félicitations !\n",
                                              color=discord.Color.green())
-            embed_validation.set_footer(text=f"Acceptée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
+            embed_validation.set_footer(text=f"Acceptée par {interaction.user}",
+                                        icon_url=interaction.user.display_avatar.url)
             await interaction.response.send_message(f"{member.mention}", embed=embed_validation)
-            channel = self.bot.get_channel(ID_LOGS)
 
+            channel = self.bot.get_channel(ID_LOGS)
             return await channel.send(f"{member.mention} a été accepté pour devenir :\n__**{recrue.value}**__\n")
+
 
         else:
             raison_embed = "  •  Raison : " + raison if raison else ""
