@@ -1,1 +1,0 @@
-# scripts_global/events/__init__.py
