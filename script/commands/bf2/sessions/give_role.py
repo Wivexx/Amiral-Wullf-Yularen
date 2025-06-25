@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from script.commands.bf2.USEFUL_IDS import (
+from USEFUL_IDS import (
     ID_SESSION_PLAYER,
     ID_ANNONCE_SESSION,
     ID_ROLE_LANCEUR,
