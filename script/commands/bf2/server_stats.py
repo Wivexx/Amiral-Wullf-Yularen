@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from datetime import datetime
-from script.commands.bf2.USEFUL_IDS import (
+from USEFUL_IDS import (
     ID_ROLE_REPUBLIQUE, ID_ROLE_STAFF, ID_ROLE_CANDA, ID_ROLE_ORAL,
     REGIMENTS_LIST_NAME, GRADE_ORDER
 )
