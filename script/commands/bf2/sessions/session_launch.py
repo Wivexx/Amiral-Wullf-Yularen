@@ -4,7 +4,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import datetime
-from script.commands.bf2.USEFUL_IDS import ID_ROLE_REPUBLIQUE, ID_ANNONCE_SESSION, ID_ROLE_LANCEUR, CHECK_GREEN_REACT, LATE_REACT, RED_CROSS_REACT, IDK_REACT, session_pics
+from USEFUL_IDS import ID_ROLE_REPUBLIQUE, ID_ANNONCE_SESSION, ID_ROLE_LANCEUR, CHECK_GREEN_REACT, LATE_REACT, RED_CROSS_REACT, IDK_REACT, session_pics
 
 
 class CommandeSessionLauncher(commands.Cog):
