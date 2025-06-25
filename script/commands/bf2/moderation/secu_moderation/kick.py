@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from script.commands.bf2.USEFUL_IDS import ID_LOGS
+from USEFUL_IDS import ID_LOGS
 
 
 class KickCommand(commands.Cog):
