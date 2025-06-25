@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
-from script.commands.bf2.USEFUL_IDS import GRADE_ORDER, REGIMENTS_LIST_ROLE
+from USEFUL_IDS import GRADE_ORDER, REGIMENTS_LIST_ROLE
 
 class MemberInfoCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
