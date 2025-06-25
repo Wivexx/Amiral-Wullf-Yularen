@@ -3,7 +3,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import datetime
-from script.commands.bf2.USEFUL_IDS import (ID_ANNONCE_SESSION_FORMATION,
+from USEFUL_IDS import (ID_ANNONCE_SESSION_FORMATION,
                                             ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
                                             ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
                                             CHECK_GREEN_REACT, LATE_REACT, RED_CROSS_REACT, IDK_REACT,
