@@ -4,7 +4,7 @@ import os
 from discord.ext import commands
 from discord import app_commands
 from datetime import datetime
-from script.commands.bf2.USEFUL_IDS import ID_LOGS, ID_LOGS_HAUT_STAFF
+from USEFUL_IDS import ID_LOGS, ID_LOGS_HAUT_STAFF
 
 REPORTS_FILE = "reports.json"
 
