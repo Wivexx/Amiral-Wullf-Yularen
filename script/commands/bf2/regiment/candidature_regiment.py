@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
-from script.commands.bf2.USEFUL_IDS import (ID_ROLE_CHEF_REGIMENT, ID_ROLE_SECOND_REGIMENT, ID_ROLE_COMMANDANT_OP,
+from USEFUL_IDS import (ID_ROLE_CHEF_REGIMENT, ID_ROLE_SECOND_REGIMENT, ID_ROLE_COMMANDANT_OP,
                                             REGIMENTS_LIST_NAME, ID_ROLE_REGIMENT,
                                             ID_ROLE_GARDE, ID_ROLE_ELITE)
 
