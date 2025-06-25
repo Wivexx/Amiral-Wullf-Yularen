@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from script.commands.bf2.USEFUL_IDS import (ID_ROLE_STAFF, ID_ROLE_LANCEUR, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_FORMATEUR_JET,
+from USEFUL_IDS import (ID_ROLE_STAFF, ID_ROLE_LANCEUR, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_FORMATEUR_JET,
                                             ID_ROLE_CHEF_REGIMENT,
                                             ID_ROLE_SECOND_REGIMENT,
                                             ID_ROLE_COMMANDANT_OP
