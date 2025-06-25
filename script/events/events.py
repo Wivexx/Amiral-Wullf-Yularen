@@ -9,7 +9,7 @@ import os
 
 import discord
 from discord.ext import commands
-from script.commands.bf2.USEFUL_IDS import ID_LOGS, ID_CADET_CLONE_TROOPER_ROLE, ID_COMPTE_DE_SESSION, ID_HELPER, IDS_WHITE_LISTES
+from USEFUL_IDS import ID_LOGS, ID_CADET_CLONE_TROOPER_ROLE, ID_COMPTE_DE_SESSION, ID_HELPER, IDS_WHITE_LISTES
 
 
 
