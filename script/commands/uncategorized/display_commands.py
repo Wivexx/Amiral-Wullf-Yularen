@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
 from USEFUL_IDS import (ID_ROLE_STAFF, ID_ROLE_LANCEUR, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_FORMATEUR_JET,
-                                            ID_ROLE_CHEF_REGIMENT,
-                                            ID_ROLE_SECOND_REGIMENT,
-                                            ID_ROLE_COMMANDANT_OP
-                                            )
+                        ID_ROLE_CHEF_REGIMENT,
+                        ID_ROLE_SECOND_REGIMENT,
+                        ID_ROLE_COMMANDANT_OP
+                        )
 
 
 class DisplayCommandsView(discord.ui.View):
@@ -44,7 +44,8 @@ class DefaultButton(discord.ui.Button):
                               "`/ping`\n"
                               "`/say`\n"
                               "`/report`\n"
-                              "`/serveur-stats`",
+                              "`/serveur-stats`\n"
+                              "`/anniversaire`",
                         inline=False)
 
         embed.add_field(name="**┏—————— Jeux ——————┓**",
@@ -69,7 +70,7 @@ class DefaultButton(discord.ui.Button):
                               "`/membre-info`",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 21")
+        embed.set_footer(text="Total commandes: 22")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
@@ -233,7 +234,8 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/ping`\n"
                               "`/say`\n"
                               "`/report`\n"
-                              "`/serveur-stats`",
+                              "`/serveur-stats`\n"
+                              "`/anniversaire`",
                         inline=False)
 
         embed.add_field(name="**┏—————— Jeux ——————┓**",
@@ -258,7 +260,7 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/membre-info`",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 21")
+        embed.set_footer(text="Total commandes: 22")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
