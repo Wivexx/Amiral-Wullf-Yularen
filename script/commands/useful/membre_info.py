@@ -34,12 +34,13 @@ class MemberInfoCommand(commands.Cog):
 
 
         excluded_roles = [
-        "-----------type de soldat-----------", "------------grade clone-------------",
-        "--------------Régiment--------------", "--------------Spécialité------------",
-        "-----------Gardiens de la paix-----------",
-        "-----------types de vaisseaux-----------", "---------------grade-------------- ",
-        "République", "---------------grade--------------", "Staff", "Staff +", "--------------Autres--------------",
-        "--------------Médaille--------------"
+        "------types de vaisseaux------", "---------type de soldat---------",
+        "----------Spécialité----------", "------------Régiment------------",
+        "-----Gardiens de la paix-----",
+        "------------grade------------", "---------grade clone---------",
+        "-----------Médaille-----------", "------------Autres------------",
+        "--------------Médaille--------------",
+        "Staff", "Staff +","République"
     ]
 
         platform_roles = ["PS4", "PS5"]
