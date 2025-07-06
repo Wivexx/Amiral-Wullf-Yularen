@@ -28,8 +28,9 @@ class EscouadeCommand(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="escouade", description="Créer les escouades de ta session.")
-    @app_commands.describe(message_id="ID du message contenant les réactions.")
-    async def escouade(self, interaction: discord.Interaction, message_id: str):
+    @app_commands.describe(id="ID du message contenant les réactions.")
+    async def escouade(self, interaction: discord.Interaction, id: str):
+
         if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
             await interaction.response.send_message(
                 f"❌ Seuls les <@&{ID_ROLE_LANCEUR}> peuvent utiliser cette commande.", ephemeral=True)
@@ -37,9 +38,10 @@ class EscouadeCommand(commands.Cog):
 
         try:
             channel = interaction.guild.get_channel(ID_ANNONCE_SESSION)
-            message = await channel.fetch_message(int(message_id))
-        except:
-            await interaction.response.send_message("❌ Impossible de récupérer le message. Vérifie l'ID.", ephemeral=True)
+            message = await channel.fetch_message(int(id))
+        except Exception:
+            await interaction.response.send_message("❌ Impossible de récupérer le message. Vérifie l'ID.",
+                                                    ephemeral=True)
             return
 
         reaction_priority = {
@@ -63,10 +65,9 @@ class EscouadeCommand(commands.Cog):
 
         users_status = {}
         for user_id, (emoji, _) in user_best_status.items():
-            if emoji == CHECK_GREEN_REACT:
-                users_status[user_id] = "on_time"
-            elif emoji == LATE_REACT:
-                users_status[user_id] = "late"
+            status = "on_time" if emoji == CHECK_GREEN_REACT else "late" if emoji == LATE_REACT else "ignored"
+            if status in ("on_time", "late"):
+                users_status[user_id] = status
 
         if not users_status:
             await interaction.response.send_message(
@@ -132,7 +133,6 @@ class EscouadeCommand(commands.Cog):
                 continue
 
             members.sort(key=get_highest_grade_index)
-
             regiments_in_squad = set(
                 r for m in members if (r := member_to_reg.get(m.id)) and r != "Inconnu"
             )
@@ -185,6 +185,7 @@ class EscouadeCommand(commands.Cog):
             ephemeral=True,
             view=ConfirmationView(embed)
         )
+
 
 class ConfirmationView(discord.ui.View):
     def __init__(self, embed):
