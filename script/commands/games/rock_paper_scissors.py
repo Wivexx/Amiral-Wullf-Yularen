@@ -67,7 +67,7 @@ class CommandePierrePapierCiseaux(commands.Cog):
 
                 resultat_embed = discord.Embed(
                     title="🪨 Pierre    📄 Papier    ✂️ Ciseaux",
-                    description=f"👤 <@{interaction.user.id}> a choisi : **{coup_joueur.capitalize()}**\n🤖 <@1357776545124454434> a choisi : **{coup_bot.capitalize()}**",
+                    description=f"👤 <@{interaction.user.id}> a choisi : **{coup_joueur.capitalize()}**\n👨‍✈️️ <@1357776545124454434> a choisi : **{coup_bot.capitalize()}**",
                     color=discord.Color.blue()
                 )
                 resultat_embed.add_field(name="**Résultat :**", value=resultat, inline=False)
