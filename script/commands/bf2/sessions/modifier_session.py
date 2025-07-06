@@ -8,7 +8,7 @@ from USEFUL_IDS import ID_ROLE_REPUBLIQUE, ID_ANNONCE_SESSION, ID_ROLE_LANCEUR, 
 class CommandeSessionModifier(commands.Cog):
     @app_commands.command(name="modifier-session", description="Modifie une session déjà envoyée.")
     @app_commands.describe(
-        message_id="ID du message à modifier",
+        id="ID du message à modifier",
         lanceur="Personne qui organise la session",
         date="Date de la session (JJ/MM/AAAA)",
         heure="Heure prévue (ex: 20h..)",
@@ -25,7 +25,7 @@ class CommandeSessionModifier(commands.Cog):
     async def modifier_session(
             self,
             interaction: discord.Interaction,
-            message_id: str,
+            id: str,
             lanceur: discord.Member,
             date: str,
             heure: app_commands.Choice[str],
@@ -50,7 +50,7 @@ class CommandeSessionModifier(commands.Cog):
             return
 
         try:
-            message = await salon.fetch_message(int(message_id))
+            message = await salon.fetch_message(int(id))
         except discord.NotFound:
             await interaction.response.send_message("❌ Message introuvable. Vérifie l’ID.", ephemeral=True)
             return
@@ -73,7 +73,7 @@ class CommandeSessionModifier(commands.Cog):
             embed.set_image(url=message.embeds[0].image.url)
 
         await interaction.response.send_message(
-            content=f"⚠️ Es-tu sûr de vouloir modifier ce message ? Relis bien les infos avant de valider.\nID : `{message_id}`",
+            content=f"⚠️ Es-tu sûr de vouloir modifier ce message ? Relis bien les infos avant de valider.\nID : `{id}`",
             embed=embed,
             ephemeral=True,
             view=ConfirmationEditView(embed, message)
