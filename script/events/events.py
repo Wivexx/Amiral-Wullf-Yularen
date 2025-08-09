@@ -5,12 +5,12 @@ import re
 import datetime
 import time
 import json
-import os
 
 import discord
 from discord.ext import commands
-from USEFUL_IDS import ID_LOGS, ID_CADET_CLONE_TROOPER_ROLE, ID_COMPTE_DE_SESSION, ID_HELPER, IDS_WHITE_LISTES
+from USEFUL_IDS import ID_LOGS, ID_HELPER, ID_SALON_DISCUSSION
 
+from script.events.webhooks_link import OBIWAN_WEBHOOK, ANAKIN_WEBHOOK
 
 
 intents = discord.Intents.default()
@@ -40,6 +40,36 @@ URL_FILE = "urls.json"
 
 
 def setup_events(bot: commands.Bot):
+    async def birthday_check_loop():
+        await bot.wait_until_ready()
+        while not bot.is_closed():
+            now = datetime.datetime.now()
+            next_run = datetime.datetime.combine(now.date() + datetime.timedelta(days=1), datetime.time.min)
+            seconds_until_midnight = (next_run - now).total_seconds()
+
+            await asyncio.sleep(seconds_until_midnight)
+
+            today = datetime.date.today()
+            with open("birthdays.json", "r", encoding="utf-8") as f:
+                birthdays = json.load(f)
+
+            for user_id, info in birthdays.items():
+                if info.get("ping") and info["day"] == today.day and info["month"] == today.month:
+                    user = await bot.fetch_user(int(user_id))
+                    channel = bot.get_channel(ID_SALON_DISCUSSION)
+
+                    embed = discord.Embed(
+                        title="🎉 Joyeux anniversaire ! 🎉",
+                        description=f"Nous souhaitons un merveilleux anniversaire à {user.mention} !",
+                        color=discord.Color.gold()
+                    )
+                    embed.set_image(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F09%2F12%2F23%2F08%2Fbirthday-937520_1280.jpg&f=1&nofb=1&ipt=3e482c21e2887ae149befcc5a00f399d414333ba40bb2ea40df7962aec7da8d1")
+
+                    if info.get("with_year"):
+                        age = today.year - info.get("year", today.year)
+                        embed.add_field(name="", value=f"**{age} ans aujourd'hui !!!**")
+
+                    await channel.send(f"{user.mention}", embed=embed)
 
     async def cycle_status_messages():
         default_status_messages = [
@@ -67,6 +97,7 @@ def setup_events(bot: commands.Bot):
     async def on_ready():
         print(f'Bot is connected to Discord :\n\n> Name: {bot.user.name}\n> ID: {bot.user.id}')
         asyncio.create_task(cycle_status_messages())
+        asyncio.create_task(birthday_check_loop())
 
         try:
             synced = await bot.tree.sync()
@@ -79,91 +110,33 @@ def setup_events(bot: commands.Bot):
 
         dict_ref = [
             {
-                "channel_id": 962314938079121428,
+                "channel_id": ID_SALON_DISCUSSION,
                 "message_triggering": "roger roger",
                 "message_to_send": "https://tenor.com/view/droid-b1-gif-19907265"
             },
             {
-                "channel_id": 962314938079121428,
+                "channel_id": ID_SALON_DISCUSSION,
                 "message_triggering": "i am your father",
                 "message_to_send": "https://tenor.com/view/yes-gif-19665261"
             },
             {
-                "channel_id": 962314938079121428,
+                "channel_id": ID_SALON_DISCUSSION,
                 "message_triggering": "what's happening",
                 "message_to_send": "https://tenor.com/view/capitaine-rex-ahsoka-tano-the-clone-wars-execute-order-66-gif-5097545684667501624"
             },
             {
-                "channel_id": 962314938079121428,
+                "channel_id": ID_SALON_DISCUSSION,
                 "message_triggering": "may the 4 be with you",
                 "message_to_send": "https://tenor.com/view/may-the4th-may-the-fourth-stormtrooper-dance-dancing-gif-17104311"
             },
             {
-                "channel_id": 962314938079121428,
+                "channel_id": ID_SALON_DISCUSSION,
                 "message_triggering": "i am your father",
                 "message_to_send": "https://tenor.com/view/yes-gif-19665261"
             }
         ]
 
         CHANNEL_LOGS = bot.get_channel(ID_LOGS)
-
-        async def check_link():
-            white_list_link_list = [
-                "discord.gg/1",
-                "vm.tiktok.com/",
-            ]
-
-            url_regex = r'(https?://[^\s]+|(?:\w+\.)+\w{2,})'
-
-            if message.author.bot:
-                return
-
-            message_content = message.content.lower()
-
-            found_links = re.findall(url_regex, message_content)
-
-            if found_links:
-                detected_links = [link.replace("https://", "").replace("http://", "") for link in found_links]
-
-                authorized_links = [link for link in detected_links if
-                                    any(link.startswith(wl) for wl in white_list_link_list)]
-
-                if len(authorized_links) < len(detected_links):
-                    try:
-                        log_channel = bot.get_channel(1356672819211014334)
-
-                        embed = discord.Embed(
-                            color=discord.Color.dark_red()
-                        )
-
-                        embed.set_author(
-                            name="Auteur :",
-                            icon_url=message.author.avatar.url if message.author.avatar else None
-                        )
-
-                        embed.add_field(name="", value=f"**➪** {message.author.mention}", inline=False)
-                        embed.add_field(name="", value=f"**➪** {message.author.name}", inline=False)
-
-                        embed.add_field(
-                            name="# Message :",
-                            value=message.content if len(message.content) < 1024 else message.content[:1020] + "...",
-                            inline=False
-                        )
-
-                        embed.add_field(
-                            name="# Salon :",
-                            value=f"**➪** {message.channel.mention}\n**➪** {message.channel.name}",
-                            inline=False
-                        )
-
-                        unix_ts = int(datetime.datetime.now().timestamp())
-                        embed.add_field(name=f"~ <t:{unix_ts}:R> ~", value="", inline=False)
-
-                        await log_channel.send(embed=embed)
-                        await message.delete()
-
-                    except Exception as e:
-                        print(f"Erreur : {e}")
 
         # FOR BANNED PEOPLE COMMUNITY
         for banned_member in list_banned_community_member:
@@ -207,9 +180,6 @@ def setup_events(bot: commands.Bot):
         if "you were the chosen one" in message.content.lower().strip() and message.channel.id == 962314938079121428:
             try:
 
-                obiwan_webhook = "https://discord.com/api/webhooks/1370685076651638794/aFamhlc1mxLU0yNS5sLcgYNWM_zb2lz4XUNpzqoPszh7AFJ_CMibRZtIlEokC7Txzv40"
-                anakin_webhook = "https://discord.com/api/webhooks/1370687006878990416/Qj3zMjbGDwhcMW0H7ANg-aJfMDCC7khszkUoFUIMg95x2Xlbmv_rIouMwCsq2bYehCyz"
-
                 obiwan_lines = [
                     "It was said that you would destroy the Sith, not join them !",
                     "Bring balance to the Force, not leave it in darkness !",
@@ -224,13 +194,13 @@ def setup_events(bot: commands.Bot):
 
                 async with aiohttp.ClientSession() as session:
                     for line in obiwan_lines:
-                        await session.post(obiwan_webhook, json={
+                        await session.post(OBIWAN_WEBHOOK, json={
                             "content": line
                         })
                         await asyncio.sleep(2.5)
 
                     for line in anakin_lines:
-                        await session.post(anakin_webhook, json={
+                        await session.post(ANAKIN_WEBHOOK, json={
                             "content": line
                         })
                         await asyncio.sleep(2)
@@ -276,11 +246,9 @@ def setup_events(bot: commands.Bot):
                         )
                         embed_kick_out_of_voice_channel.set_footer(text=f"{member.name} est banni de tout intéraction avec la communauté.")
                         await CHANNEL_LOGS.send(embed=embed_kick_out_of_voice_channel)
-                        print(f"{member.name} a été déconnecté de {after.channel.name}.")
                         await member.edit(voice_channel=None)
-                    except Exception as e:
-                        print(f"Erreur lors de la déconnexion de {member.name} dans le salon {after.channel.name}: {e}")
-
+                    except Exception:
+                        pass
 
         # ONLY FOR PEOPLE BANNED VOICE CHANNEL
         for banned_voice_member in list_banned_voice_member:
