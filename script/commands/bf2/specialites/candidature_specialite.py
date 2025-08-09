@@ -69,9 +69,9 @@ class CandidatureSpecialiteCommand(commands.Cog):
             await member.add_roles(interaction.guild.get_role(ID_ROLE_SPECIALITE))
 
             embed_validation = discord.Embed(title="Candidature spécialité acceptée",
-                                             description=f"Soldat {member.mention}, vous avez été __**accepté**__ pour devenir : \n__**{recrue.value}**__\n"
-                                                         "Mes félicitations !\n",
+                                             description=f"> {member.mention}, vous avez été __**accepté**__ pour devenir : \n> **{recrue.value}**\n",
                                              color=discord.Color.green())
+            embed_validation.add_field(name="🪖 Formation", value="> Vous devrez passer une formation avant de pouvoir l'utiliser sur le champ de bataille, les annonces formation sont annoncées ici : <#1329545998262865940>.", inline=True)
             embed_validation.set_footer(text=f"Acceptée par {interaction.user}",
                                         icon_url=interaction.user.display_avatar.url)
             await interaction.response.send_message(f"{member.mention}", embed=embed_validation)
