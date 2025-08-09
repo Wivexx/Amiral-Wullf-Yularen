@@ -15,13 +15,13 @@ class CommandeSessionLauncher(commands.Cog):
     @app_commands.describe(
         lanceur="Personne qui organise la session",
         date="Date de la session (JJ/MM/AAAA)",
-        heure="Heure prévue (ex: 20h..)",
+        heure="Heure prévue (ex: 16h..)",
         minute="Minute (ex: ..h00)"
     )
     @app_commands.choices(
         heure=[app_commands.Choice(name=heure, value=heure.replace("h..", "")) for heure in [
             "10h..", "11h..", "12h..", "13h..", "14h..", "15h..",
-            "16h..", "17h..", "18h..", "19h..", "20h..", "21h..", "22h.."]],
+            "16h..", "17h..", "18h..", "19h..", "20h..", "21h.."]],
         minute=[app_commands.Choice(name=minute, value=minute.replace("..h", "")) for minute in [
             "..h00", "..h15", "..h30", "..h45"]]
     )
@@ -45,6 +45,9 @@ class CommandeSessionLauncher(commands.Cog):
             await interaction.response.send_message("❌ Format de date invalide. Assure-toi qu'il est sous la forme JJ/MM/AAAA.", ephemeral=True)
             return
 
+        if heure.value == "21" and minute.value == "45":
+            minute.value = "30"
+
         embed = discord.Embed(
             title="📣 Annonce session",
             color=discord.Color.dark_blue()
@@ -56,6 +59,7 @@ class CommandeSessionLauncher(commands.Cog):
                     f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
                     f"🎯 **Lanceur :** {lanceur.mention}\n\n"
                     f"{comment}"
+                    f"-# Modification des réactions maximum 1h à l'avance.\n\n"
                 ))
 
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
