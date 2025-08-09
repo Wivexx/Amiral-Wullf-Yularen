@@ -22,6 +22,7 @@ from script.commands.bf2.moderation.haut_staff.setup_log import LogCommand
 
 from script.commands.bf2.moderation.black_list.black_list import BlacklistCommand
 from script.commands.bf2.moderation.secu_moderation.ban import BanCommand
+from script.commands.bf2.moderation.clear import ClearCommand
 from script.commands.bf2.moderation.secu_moderation.kick import KickCommand
 
 from script.commands.bf2.regiment.candidature_regiment import CandidatureRegimentCommand
@@ -32,6 +33,7 @@ from script.commands.bf2.sessions.escouade import EscouadeCommand
 from script.commands.bf2.sessions.give_role import CommandeGiveRole
 from script.commands.bf2.sessions.remove_role import CommandeRemoveRole
 
+from script.commands.bf2.specialites.candidature_formateur import CandidatureFormateurCommand
 from script.commands.bf2.specialites.candidature_specialite import CandidatureSpecialiteCommand
 from script.commands.bf2.specialites.session_formation_launch import CommandeSessionFormationLauncher
 from script.commands.bf2.specialites.specialite_validation import SpecialiteValidationCommand
@@ -49,6 +51,7 @@ from script.commands.games.rock_paper_scissors import CommandePierrePapierCiseau
 from script.commands.games.love_calculator import CommandeCalculateurAmour
 from script.commands.games.tic_tac_toe import MorpionCommande
 
+from script.commands.useful.emoji_info import EmojiInfo
 from script.commands.useful.user_info import UserInfoCommand
 from script.commands.useful.password_check import PasswordCheckCommand
 from script.commands.useful.server_info import ServerInfoCommand
@@ -59,12 +62,11 @@ from script.commands.useful.membre_info import MemberInfoCommand
 
 from script.commands.uncategorized.display_commands import DisplayCommandsCommand
 from script.commands.uncategorized.say import SayCommand
-from script.commands.bf2.moderation.clear import ClearCommand
 from script.commands.uncategorized.ping import PingCommand
+from script.commands.uncategorized.birthday import CommandeBirthday
 
 ### List of commands ###
 COMMANDS = [
-
     ScanServerCommand,
     LogCommand,
 
@@ -82,6 +84,7 @@ COMMANDS = [
     CommandeGiveRole,
     CommandeRemoveRole,
 
+    CandidatureFormateurCommand,
     CandidatureSpecialiteCommand,
     CommandeSessionFormationLauncher,
     SpecialiteValidationCommand,
@@ -99,6 +102,7 @@ COMMANDS = [
     CommandeCalculateurAmour,
     MorpionCommande,
 
+    EmojiInfo,
     UserInfoCommand,
     PasswordCheckCommand,
     ServerInfoCommand,
@@ -111,6 +115,7 @@ COMMANDS = [
     DisplayCommandsCommand,
     SayCommand,
     PingCommand,
+    CommandeBirthday,
 ]
 
 intents = discord.Intents.all()
