@@ -11,14 +11,14 @@ class CommandeSessionModifier(commands.Cog):
         id="ID du message à modifier",
         lanceur="Personne qui organise la session",
         date="Date de la session (JJ/MM/AAAA)",
-        heure="Heure prévue (ex: 20h..)",
+        heure="Heure prévue (ex: 16h..)",
         minute="Minute (ex: ..h00)",
         commentaire="Commentaire facultatif"
     )
     @app_commands.choices(
         heure=[app_commands.Choice(name=heure, value=heure.replace("h..", "")) for heure in [
             "10h..", "11h..", "12h..", "13h..", "14h..", "15h..",
-            "16h..", "17h..", "18h..", "19h..", "20h..", "21h..", "22h.."]],
+            "16h..", "17h..", "18h..", "19h..", "20h..", "21h.."]],
         minute=[app_commands.Choice(name=minute, value=minute.replace("..h", "")) for minute in [
             "..h00", "..h15", "..h30", "..h45"]]
     )
@@ -33,8 +33,7 @@ class CommandeSessionModifier(commands.Cog):
             commentaire: str = ""
     ):
         if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
-            await interaction.response.send_message(
-                f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour modifier une session.", ephemeral=True)
+            await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour modifier une session.", ephemeral=True)
             return
 
         try:
@@ -44,28 +43,33 @@ class CommandeSessionModifier(commands.Cog):
             await interaction.response.send_message("❌ Format de date invalide. JJ/MM/AAAA attendu.", ephemeral=True)
             return
 
-        salon = interaction.guild.get_channel(ID_ANNONCE_SESSION)
-        if not salon:
-            await interaction.response.send_message("❌ Salon de session introuvable.", ephemeral=True)
-            return
-
         try:
+            salon = interaction.guild.get_channel(ID_ANNONCE_SESSION)
+            if not salon:
+                await interaction.response.send_message("❌ Salon introuvable. Vérifie l'ID du salon d'annonces.",
+                                                        ephemeral=True)
+                return
+
             message = await salon.fetch_message(int(id))
         except discord.NotFound:
             await interaction.response.send_message("❌ Message introuvable. Vérifie l’ID.", ephemeral=True)
             return
 
+        if heure.value == "21" and minute.value == "45":
+            minute.value = "30"
+
+        comment = "" if not commentaire else f"💬 **Commentaire :** {commentaire}\n\n"
         embed = discord.Embed(
             title="📣 Annonce session (modifiée)",
             description=(
                 f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
                 f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
                 f"🎯 **Lanceur :** {lanceur.mention}\n\n"
+                f"{comment}"
+                f"-# Modification des réactions maximum 1h à l'avance.\n\n"
             ),
             color=discord.Color.orange()
         )
-        if commentaire:
-            embed.add_field(name="", value=f"💬 **Commentaire :** {commentaire}\n\n")
 
         embed.set_footer(text=f"Modifié par {interaction.user}", icon_url=interaction.user.display_avatar.url)
 
