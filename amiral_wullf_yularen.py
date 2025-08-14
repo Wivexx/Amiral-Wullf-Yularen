@@ -26,6 +26,7 @@ from script.commands.bf2.moderation.clear import ClearCommand
 from script.commands.bf2.moderation.secu_moderation.kick import KickCommand
 
 from script.commands.bf2.regiment.candidature_regiment import CandidatureRegimentCommand
+from script.commands.bf2.regiment.ejecter_regiment import EjecterRegimentCommand
 
 from script.commands.bf2.sessions.session_launch import CommandeSessionLauncher
 from script.commands.bf2.sessions.modifier_session import CommandeSessionModifier
@@ -77,6 +78,7 @@ COMMANDS = [
     BlacklistCommand,
 
     CandidatureRegimentCommand,
+    EjecterRegimentCommand,
 
     CommandeSessionLauncher,
     CommandeSessionModifier,
