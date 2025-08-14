@@ -3,7 +3,7 @@ from discord.ext import commands
 from USEFUL_IDS import (ID_ROLE_STAFF, ID_ROLE_LANCEUR, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_FORMATEUR_JET,
                         ID_ROLE_CHEF_REGIMENT,
                         ID_ROLE_SECOND_REGIMENT,
-                        ID_ROLE_COMMANDANT_OP
+                        ID_ROLE_COMMANDANT_OP, ID_ROLE_INSTRUCTEUR
                         )
 
 
@@ -60,22 +60,23 @@ class DefaultButton(discord.ui.Button):
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
-                        value="`/password-check`\n"
-                              "`/password-generator`\n"
-                              "`/server-info`\n"
-                              "`/role-info`\n"
-                              "`/timestamp`\n"
+                        value="`/emoji-info`\n"
+                              "`/membre-info`\n"
                               "`/user-info`\n"
-                              "`/webhook-info`\n"
-                              "`/membre-info`",
+                              "`/role-info`\n"
+                              "`/server-info`\n"
+                              "`/password-check`\n"
+                              "`/password-generator`\n"
+                              "`/timestamp`\n"
+                              "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 22")
+        embed.set_footer(text="Total commandes: 23")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="default")
@@ -110,7 +111,7 @@ class SessionButton(discord.ui.Button):
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="session")
@@ -151,7 +152,7 @@ class StaffButton(discord.ui.Button):
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="staff")
@@ -160,7 +161,7 @@ class StaffButton(discord.ui.Button):
 class FormateurButton(discord.ui.Button):
     def __init__(self, disabled=False):
         super().__init__(
-            label="🪖 Commandes formateurs",
+            label="🪖 Commandes Formateurs ~ Instructeurs",
             style=discord.ButtonStyle.green,
             custom_id="formateurs_commands",
             disabled=disabled
@@ -170,20 +171,25 @@ class FormateurButton(discord.ui.Button):
         embed = discord.Embed(
             title="",
             color=discord.Color.green()
+
         )
-        embed.add_field(name="Commandes :", value=
+        embed.add_field(name="**┏—————— Instructeurs ——————┓**", value=
+        "`/candidature-formateur`\n",
+                        inline=False
+                        )
+        embed.add_field(name="**┏—————— Formateurs ——————┓**", value=
             "`/session-formation`\n"
             "`/candidature-specialite`\n"
             "`/specialite-validation`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 3")
+        embed.set_footer(text="Total commandes: 4")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="formateur")
@@ -205,16 +211,17 @@ class RegimentButton(discord.ui.Button):
             color=discord.Color.light_grey()
         )
         embed.add_field(name="Commandes :", value=
-            "`/candidature-regiment`\n",
+            "`/candidature-regiment`\n"
+            "`/ejecter-regiment`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 1")
+        embed.set_footer(text="Total commandes: 2")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         view = DisplayCommandsView(is_staff, is_lanceur, is_formateur, is_reg_high_perm, active_page="regiment")
@@ -250,22 +257,23 @@ class DisplayCommandsCommand(commands.Cog):
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
-                        value="`/password-check`\n"
-                              "`/password-generator`\n"
-                              "`/server-info`\n"
-                              "`/role-info`\n"
-                              "`/timestamp`\n"
+                        value="`/emoji-info`\n"
+                              "`/membre-info`\n"
                               "`/user-info`\n"
-                              "`/webhook-info`\n"
-                              "`/membre-info`",
+                              "`/role-info`\n"
+                              "`/server-info`\n"
+                              "`/password-check`\n"
+                              "`/password-generator`\n"
+                              "`/timestamp`\n"
+                              "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 22")
+        embed.set_footer(text="Total commandes: 23")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
         is_lanceur = ID_ROLE_LANCEUR in user_roles_ids
-        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids
+        is_formateur = ID_ROLE_FORMATEUR_COMMANDO in user_roles_ids or ID_ROLE_FORMATEUR_JET in user_roles_ids or ID_ROLE_INSTRUCTEUR in user_roles_ids
         is_reg_high_perm = ID_ROLE_CHEF_REGIMENT in user_roles_ids or ID_ROLE_SECOND_REGIMENT in user_roles_ids or ID_ROLE_COMMANDANT_OP in user_roles_ids
 
         if is_staff or is_lanceur or is_formateur:
