@@ -212,11 +212,12 @@ class RegimentButton(discord.ui.Button):
         )
         embed.add_field(name="Commandes :", value=
             "`/candidature-regiment`\n"
-            "`/ejecter-regiment`\n",
+            "`/ejecter-regiment`\n"
+            "`/augmentation`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 2")
+        embed.set_footer(text="Total commandes: 3")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
