@@ -12,8 +12,6 @@ from USEFUL_IDS import (
 )
 
 
-import discord
-
 class ChefSelectView(discord.ui.View):
     def __init__(self, members, role_player, role_head):
         super().__init__(timeout=180)
@@ -30,6 +28,7 @@ class ChefSelectView(discord.ui.View):
         self.add_item(self.select)
 
     async def select_callback(self, interaction: discord.Interaction):
+        await interaction.response.defer(ephemeral=True, thinking=True)
         chefs = self.select.values
         count_player, count_head = 0, 0
         failed_players, failed_heads = [], []
@@ -62,12 +61,12 @@ class ChefSelectView(discord.ui.View):
             description=desc,
             color=discord.Color.green()
         )
-        await interaction.response.edit_message(content="", embed=embed, view=None)
-
+        await interaction.edit_original_response(content="", embed=embed, view=None)
 
 
 @app_commands.context_menu(name="Donner les rôles de session")
 async def give_role_context(interaction: discord.Interaction, message: discord.Message):
+
     if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
         await interaction.response.send_message(
             f"❌ Seuls les <@&{ID_ROLE_LANCEUR}> peuvent utiliser cette commande.",
@@ -99,15 +98,12 @@ async def give_role_context(interaction: discord.Interaction, message: discord.M
     role_player = interaction.guild.get_role(ID_SESSION_PLAYER)
     role_head = interaction.guild.get_role(ID_ESCOUADE_HEAD)
 
-    try:
-        view = ChefSelectView(members, role_player, role_head)
-        await interaction.response.send_message(
-            content="👉 Sélectionne les chefs d’escouades dans le menu ci-dessous :",
-            ephemeral=True,
-            view=view
-        )
-    except Exception as e:
-        return await interaction.response.send_message(f"[ERROR] {e}", ephemeral=True)
+    view = ChefSelectView(members, role_player, role_head)
+    await interaction.response.send_message(
+        content="👉 Sélectionne les chefs d’escouades dans le menu ci-dessous :",
+        ephemeral=True,
+        view=view
+    )
 
 
 class CommandeGiveRole(commands.Cog):
