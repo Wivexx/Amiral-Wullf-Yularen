@@ -99,14 +99,12 @@ class SessionButton(discord.ui.Button):
         )
         embed.add_field(name="Commandes :", value=
             "`/session`\n"
-            "`/escouade`\n"
             "`/modifier-session`\n"
-            "`/give-role`\n"
             "`/remove-role`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 5")
+        embed.set_footer(text="Total commandes: 3")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
