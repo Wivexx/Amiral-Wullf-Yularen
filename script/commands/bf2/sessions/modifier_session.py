@@ -8,12 +8,12 @@ from USEFUL_IDS import ID_ROLE_REPUBLIQUE, ID_ANNONCE_SESSION, ID_ROLE_LANCEUR, 
 class CommandeSessionModifier(commands.Cog):
     @app_commands.command(name="modifier-session", description="Modifie une session déjà envoyée.")
     @app_commands.describe(
-        id="ID du message à modifier",
+        lien="Lien du message à modifier",
         lanceur="Personne qui organise la session",
         date="Date de la session (JJ/MM/AAAA)",
         heure="Heure prévue (ex: 16h..)",
         minute="Minute (ex: ..h00)",
-        commentaire="Commentaire facultatif"
+
     )
     @app_commands.choices(
         heure=[app_commands.Choice(name=heure, value=heure.replace("h..", "")) for heure in [
@@ -25,7 +25,7 @@ class CommandeSessionModifier(commands.Cog):
     async def modifier_session(
             self,
             interaction: discord.Interaction,
-            id: str,
+            lien: str,
             lanceur: discord.Member,
             date: str,
             heure: app_commands.Choice[str],
@@ -33,7 +33,16 @@ class CommandeSessionModifier(commands.Cog):
             commentaire: str = ""
     ):
         if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
-            await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour modifier une session.", ephemeral=True)
+            await interaction.response.send_message(
+                f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour modifier une session.",
+                ephemeral=True
+            )
+            return
+
+        try:
+            message_id = int(lien.split("/")[-1])
+        except ValueError:
+            await interaction.response.send_message("❌ Lien invalide.", ephemeral=True)
             return
 
         try:
@@ -46,13 +55,12 @@ class CommandeSessionModifier(commands.Cog):
         try:
             salon = interaction.guild.get_channel(ID_ANNONCE_SESSION)
             if not salon:
-                await interaction.response.send_message("❌ Salon introuvable. Vérifie l'ID du salon d'annonces.",
-                                                        ephemeral=True)
+                await interaction.response.send_message("❌ Salon introuvable.", ephemeral=True)
                 return
 
-            message = await salon.fetch_message(int(id))
+            message = await salon.fetch_message(message_id)
         except discord.NotFound:
-            await interaction.response.send_message("❌ Message introuvable. Vérifie l’ID.", ephemeral=True)
+            await interaction.response.send_message("❌ Message introuvable.", ephemeral=True)
             return
 
         if heure.value == "21" and minute.value == "45":
@@ -77,7 +85,7 @@ class CommandeSessionModifier(commands.Cog):
             embed.set_image(url=message.embeds[0].image.url)
 
         await interaction.response.send_message(
-            content=f"⚠️ Es-tu sûr de vouloir modifier ce message ? Relis bien les infos avant de valider.\nID : `{id}`",
+            content=f"⚠️ Es-tu sûr de vouloir modifier ce message ? Relis bien les infos avant de valider.\n",
             embed=embed,
             ephemeral=True,
             view=ConfirmationEditView(embed, message)
