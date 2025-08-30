@@ -27,17 +27,18 @@ def is_cadet(member: discord.Member):
 
 
 class ConfirmationView(discord.ui.View):
-    def __init__(self, embed):
+    def __init__(self, embed, description):
         super().__init__(timeout=None)
         self.embed = embed
+        self.description = description
 
-    @discord.ui.button(label="✅ Les envoyer", style=discord.ButtonStyle.success)
+    @discord.ui.button(label="✅ Envoyer les escouades dans #➪📋lancement-sessions", style=discord.ButtonStyle.success)
     async def confirm(self, interaction: discord.Interaction, button: discord.ui.Button):
         salon = interaction.guild.get_channel(ID_LANCEMENT_SESSION)
         await salon.send(embed=self.embed)
         await interaction.response.edit_message(content="✅ Message envoyé avec succès.", embed=None, view=None)
 
-    @discord.ui.button(label="❌ Le faire manuellement", style=discord.ButtonStyle.danger)
+    @discord.ui.button(label="❌ Annuler l'envoie", style=discord.ButtonStyle.danger)
     async def cancel(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.edit_message(content="❌ Envoi annulé.", embed=None, view=None)
 
@@ -179,9 +180,7 @@ async def escouade_context(interaction: discord.Interaction, message: discord.Me
     jump_url = message.jump_url
     regiments_count = len(all_used_regiments)
 
-    embed = discord.Embed(
-        title="📋 Répartition des escouades",
-        description=(
+    description = (
             f"🔗 [**Lien vers le message de la session**]({jump_url})\n"
             f"👥 **Total de joueurs :** {total}\n"
             f"⌛ **Retardataires :** {retardataires_count}\n"
@@ -190,7 +189,11 @@ async def escouade_context(interaction: discord.Interaction, message: discord.Me
             f"📊 **Taux de participation :** {participation_rate}%\n\n"
             f"-------------------------------\n\n"
             f"{desc}"
-        ),
+        )
+
+    embed = discord.Embed(
+        title="📋 Répartition des escouades",
+        description=description,
         color=discord.Color.blurple()
     )
     embed.set_footer(
@@ -199,10 +202,9 @@ async def escouade_context(interaction: discord.Interaction, message: discord.Me
     )
 
     await interaction.response.send_message(
-        content="⚠️ Veux-tu garder ces escouades ou les envoyer manuellement ?",
-        embed=embed,
+        content=f"{description}",
         ephemeral=True,
-        view=ConfirmationView(embed)
+        view=ConfirmationView(embed, description)
     )
 
 
