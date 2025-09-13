@@ -43,6 +43,7 @@ from script.commands.bf2.specialites.specialite_validation import SpecialiteVali
 from script.commands.bf2.moderation.report import ReportCommand
 
 from script.commands.bf2.server_stats import CommandeServeurStats
+from script.commands.bf2.counter import CounterCommand
 
 from script.commands.games.magic_ball import CommandeBouleMagique
 from script.commands.games.draw import CommandeTirage
@@ -61,6 +62,8 @@ from script.commands.useful.role_info import RoleInfoCommand
 from script.commands.useful.password_generator import PasswordGeneratorCommand
 from script.commands.useful.timestamp import TimestampCommand
 from script.commands.useful.membre_info import MemberInfoCommand
+
+from script.commands.useful.correction import CorrectionCommand
 
 from script.commands.uncategorized.display_commands import DisplayCommandsCommand
 from script.commands.uncategorized.say import SayCommand
@@ -96,6 +99,7 @@ COMMANDS = [
     ReportCommand,
 
     CommandeServeurStats,
+    CounterCommand,
 
     CommandeBouleMagique,
     CommandeTirage,
@@ -115,6 +119,8 @@ COMMANDS = [
     RoleInfoCommand,
     WebhookInfoCommand,
     MemberInfoCommand,
+
+    CorrectionCommand,
 
     DisplayCommandsCommand,
     SayCommand,
