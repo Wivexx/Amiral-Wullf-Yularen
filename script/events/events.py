@@ -8,7 +8,7 @@ import json
 
 import discord
 from discord.ext import commands
-from USEFUL_IDS import ID_LOGS, ID_HELPER, ID_SALON_DISCUSSION
+from USEFUL_IDS import ID_LOGS, ID_HELPER, ID_SALON_DISCUSSION, ID_ROLE_REPUBLIQUE, ID_ROLE_STAFF
 
 from script.events.webhooks_link import OBIWAN_WEBHOOK, ANAKIN_WEBHOOK
 
@@ -24,11 +24,21 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 cooldowns = {}
 
 
+def load_counter():
+    try:
+        with open("counter.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"counter": {"staff": 0, "republic": 0}}
+def save_counter(counter):
+    with open("counter.json", "w") as f:
+        json.dump(counter, f, indent=4)
+
+
 def read_file(file):
     with open(f'script/events/banned_member_folder/{file}', 'r', encoding='utf-8') as f:
         lines = f.readlines()
     return [int(line.split(';')[1].strip()) for line in lines]
-
 
 list_banned_community_member = read_file('list_banned_community_member.txt')
 
@@ -93,6 +103,24 @@ def setup_events(bot: commands.Bot):
                 )
                 await asyncio.sleep(30)
 
+    def counter(message_context):
+
+        counter = load_counter()
+        staff = False
+        republic = False
+
+        for role in message_context.author.roles:
+            if role.id == ID_ROLE_STAFF:
+                staff = True
+                break
+            if role.id == ID_ROLE_REPUBLIQUE:
+                republic = True
+
+        if staff: counter["counter"]["staff"] += 1
+        elif republic: counter["counter"]["republic"] += 1
+
+        save_counter(counter)
+
     @bot.event
     async def on_ready():
         print(f'Bot is connected to Discord :\n\n> Name: {bot.user.name}\n> ID: {bot.user.id}')
@@ -107,6 +135,8 @@ def setup_events(bot: commands.Bot):
 
     @bot.event
     async def on_message(message):
+
+        counter(message_context=message)
 
         dict_ref = [
             {
