@@ -45,7 +45,8 @@ class DefaultButton(discord.ui.Button):
                               "`/say`\n"
                               "`/report`\n"
                               "`/serveur-stats`\n"
-                              "`/anniversaire`",
+                              "`/anniversaire`\n"
+                              "`/counter-activite`",
                         inline=False)
 
         embed.add_field(name="**┏—————— Jeux ——————┓**",
@@ -71,7 +72,7 @@ class DefaultButton(discord.ui.Button):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 23")
+        embed.set_footer(text="Total commandes: 24")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
@@ -241,7 +242,8 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/say`\n"
                               "`/report`\n"
                               "`/serveur-stats`\n"
-                              "`/anniversaire`",
+                              "`/anniversaire`\n"
+                              "`/counter-activite`",
                         inline=False)
 
         embed.add_field(name="**┏—————— Jeux ——————┓**",
@@ -267,7 +269,7 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 23")
+        embed.set_footer(text="Total commandes: 24")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
