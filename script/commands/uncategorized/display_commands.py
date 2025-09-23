@@ -141,12 +141,16 @@ class StaffButton(discord.ui.Button):
                               "`/kick`\n",
                         inline=False
                         )
+        embed.add_field(name="**┏—————— Modérateur ——————┓**",
+                        value="`/gerer-role`\n",
+                        inline=False
+                        )
         embed.add_field(name="**┏—————— Staff ——————┓**",
                         value="`/blackliste`\n"
                               "`/clear`\n",
                         inline=False
         )
-        embed.set_footer(text="Total commandes: 6")
+        embed.set_footer(text="Total commandes: 7")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
