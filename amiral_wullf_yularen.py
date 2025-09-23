@@ -24,6 +24,7 @@ from script.commands.bf2.moderation.black_list.black_list import BlacklistComman
 from script.commands.bf2.moderation.secu_moderation.ban import BanCommand
 from script.commands.bf2.moderation.clear import ClearCommand
 from script.commands.bf2.moderation.secu_moderation.kick import KickCommand
+from script.commands.bf2.moderation.manage_role import ManageRoleCommand
 
 from script.commands.bf2.regiment.candidature_regiment import CandidatureRegimentCommand
 from script.commands.bf2.regiment.ejecter_regiment import EjecterRegimentCommand
@@ -80,6 +81,7 @@ COMMANDS = [
 
     ClearCommand,
     BlacklistCommand,
+    ManageRoleCommand,
 
     CandidatureRegimentCommand,
     EjecterRegimentCommand,
