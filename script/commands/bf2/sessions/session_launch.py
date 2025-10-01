@@ -56,7 +56,7 @@ class CommandeSessionLauncher(commands.Cog):
         embed.add_field(name="",
                 value=(
                     f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
-                    f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
+                    f"⏰ **Heure :** {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
                     f"🎯 **Lanceur :** {lanceur.mention}\n\n"
                     f"{comment}"
                     f"-# Modification des réactions maximum 1h à l'avance.\n\n"
