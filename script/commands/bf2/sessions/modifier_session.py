@@ -66,13 +66,13 @@ class CommandeSessionModifier(commands.Cog):
         if heure.value == "21" and minute.value == "45":
             minute.value = "30"
 
-        comment = "" if not commentaire else f"💬 **Commentaire :** {commentaire}\n\n"
+        comment = "" if not commentaire else f"💬 __**Commentaire**__\n> {commentaire}\n\n"
         embed = discord.Embed(
             title="📣 Annonce session (modifiée)",
             description=(
-                f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
-                f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
-                f"🎯 **Lanceur :** {lanceur.mention}\n\n"
+                f"\n🗓️ __**Date**__\n> <t:{timestamp}:F>\n\n"
+                f"⏰ __**Heure**__\n> {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
+                f"🎯 __**Lanceur**__\n> {lanceur.mention}\n> {lanceur.name}\n\n"
                 f"{comment}"
                 f"-# Modification des réactions maximum 1h à l'avance.\n\n"
             ),
