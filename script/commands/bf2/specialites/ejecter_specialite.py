@@ -5,7 +5,7 @@ from discord.ui import Button, View
 from USEFUL_IDS import (ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_INSTRUCTEUR,
                         ID_ROLE_SPECIALITE, ID_ROLE_JET, ID_ROLE_COMMANDO,
                         ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                        ID_ROLE_DOUBLE_SPE)
+                        ID_ROLE_DOUBLE_SPE, ID_LOGS)
 
 class EjecterSpecialiteCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -61,9 +61,12 @@ class EjecterSpecialiteCommand(commands.Cog):
         await member.remove_roles(interaction.guild.get_role(ID_ROLE_DOUBLE_SPE))
 
         embed = discord.Embed(title="Éjecté de la spécialité",
-                                description=f"{member.mention} a perdu sa spécialité {"Jet-Trooper" if specialite.value == 1 else "Commando Clone"}.",
+                                description=f"{member.mention} a perdu sa spécialité {specialite.name}.",
                                 color=discord.Color.red())
         embed.set_footer(text=f"Éjecté par {interaction.user.name}", icon_url=interaction.user.display_avatar.url)
         embed.set_thumbnail(url=member.display_avatar.url)
         await interaction.response.send_message(f"{member.mention}", embed=embed)
+
+        channel = self.bot.get_channel(ID_LOGS)
+        return await channel.send(f"{member.mention} a été retiré des :\n__**{specialite.name}**__\n||<@702493074013814784>||")
 
