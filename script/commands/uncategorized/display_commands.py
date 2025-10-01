@@ -183,11 +183,12 @@ class FormateurButton(discord.ui.Button):
         embed.add_field(name="**┏—————— Formateurs ——————┓**", value=
             "`/session-formation`\n"
             "`/candidature-specialite`\n"
-            "`/specialite-validation`\n",
+            "`/specialite-validation`\n"
+            "`/ejecter-specialite`\n",
             inline=False
         )
 
-        embed.set_footer(text="Total commandes: 4")
+        embed.set_footer(text="Total commandes: 5")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
