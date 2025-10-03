@@ -34,9 +34,7 @@ class CommandeSessionLauncher(commands.Cog):
         minute: app_commands.Choice[str],
         commentaire: str = ""
     ):
-        if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles):
-            await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour en lancer une.", ephemeral=True)
-            return
+        if not any(role.id == ID_ROLE_LANCEUR for role in interaction.user.roles): return await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_LANCEUR}> pour en lancer une.", ephemeral=True)
 
         try:
             dt = datetime.datetime.strptime(f"{date} {heure.value}:{minute.value}", "%d/%m/%Y %H:%M")
@@ -52,18 +50,19 @@ class CommandeSessionLauncher(commands.Cog):
             title="📣 Annonce session",
             color=discord.Color.dark_blue()
         )
-        comment = "" if not commentaire else f"💬 **Commentaire :** {commentaire}\n\n"
+        comment = "" if not commentaire else f"__💬 **Commentaire**__\n> {commentaire}\n\n"
         embed.add_field(name="",
                 value=(
-                    f"\n🗓️ **Date :** <t:{timestamp}:D>\n\n"
-                    f"⏰ **Heure :** {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
-                    f"🎯 **Lanceur :** {lanceur.mention}\n\n"
+                    f"\n🗓️ __**Date**__\n> <t:{timestamp}:F>\n\n"
+                    f"⏰ __**Heure**__\n> {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
+                    f"🎯 __**Lanceur**__\n> {lanceur.mention}\n> {lanceur.name}\n\n"
                     f"{comment}"
                     f"-# Modification des réactions maximum 1h à l'avance.\n\n"
                 ))
 
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
         embed.set_image(url=random.choice(session_pics))
+        embed.set_thumbnail(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.stickers.gg%2Fstickers%2F8419-clone-salute.png&f=1&nofb=1&ipt=0b40d02fd337ae2daa49cede2bc6abea714b27929a6285948b878bd7273fc443")
 
         await interaction.response.send_message(
             content=f"⚠️ Es-tu sûr de vouloir lancer cette session ? Relis bien les infos avant de valider.\n<@&{ID_ROLE_REPUBLIQUE}>",
