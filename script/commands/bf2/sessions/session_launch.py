@@ -57,7 +57,7 @@ class CommandeSessionLauncher(commands.Cog):
                     f"⏰ __**Heure**__\n> {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
                     f"🎯 __**Lanceur**__\n> {lanceur.mention}\n> {lanceur.name}\n\n"
                     f"{comment}"
-                    f"-# Modification des réactions maximum 1h à l'avance.\n\n"
+                    f"-# __**Modification des réactions maximum 1h à l'avance.**__\n\n"
                 ))
 
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
