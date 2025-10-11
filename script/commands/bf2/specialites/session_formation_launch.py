@@ -83,9 +83,10 @@ class CommandeSessionFormationLauncher(commands.Cog):
             name="",
             value=(
                 f"🗓️ **Date :** <t:{timestamp}:D>\n\n"
-                f"⏰ **Heure :** {heure.value}h{minute.value}  -  ||<t:{timestamp}:R>||\n\n"
+                f"⏰ **Heure :** {heure.value}h{minute.value}  -  <t:{timestamp}:R>\n\n"
                 f"🎯 **Lanceur :** {lanceur.mention}\n\n"
                 f"{comment}"
+                f"-# __**Modification des réactions maximum 1h à l'avance.**__\n\n"
             )
         )
         embed.set_footer(text=f"Session lancée par {interaction.user}", icon_url=interaction.user.display_avatar.url)
