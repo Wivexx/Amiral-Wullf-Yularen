@@ -57,7 +57,8 @@ class DefaultButton(discord.ui.Button):
                               "`/boule-magique`\n"
                               "`/nombre-aleatoire`\n"
                               "`/pierre-papier-ciseaux`\n"
-                              "`/morpion`\n",
+                              "`/morpion`\n"
+                              "`/tirage-aleatoire`\n",
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
@@ -72,7 +73,7 @@ class DefaultButton(discord.ui.Button):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 24")
+        embed.set_footer(text="Total commandes: 25")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
@@ -259,7 +260,8 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/boule-magique`\n"
                               "`/nombre-aleatoire`\n"
                               "`/pierre-papier-ciseaux`\n"
-                              "`/morpion`\n",
+                              "`/morpion`\n"
+                              "`/tirage-aleatoire`\n",
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
@@ -274,7 +276,7 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 24")
+        embed.set_footer(text="Total commandes: 25")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
