@@ -55,6 +55,7 @@ from script.commands.games.random_number import CommandeNombreAleatoire
 from script.commands.games.rock_paper_scissors import CommandePierrePapierCiseaux
 from script.commands.games.love_calculator import CommandeCalculateurAmour
 from script.commands.games.tic_tac_toe import MorpionCommande
+from script.commands.games.random_draw import RandomDrawCommand
 
 from script.commands.useful.emoji_info import EmojiInfo
 from script.commands.useful.user_info import UserInfoCommand
@@ -113,6 +114,7 @@ COMMANDS = [
     CommandePierrePapierCiseaux,
     CommandeCalculateurAmour,
     MorpionCommande,
+    RandomDrawCommand,
 
     EmojiInfo,
     UserInfoCommand,
