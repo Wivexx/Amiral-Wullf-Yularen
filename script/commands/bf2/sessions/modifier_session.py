@@ -80,6 +80,7 @@ class CommandeSessionModifier(commands.Cog):
         )
 
         embed.set_footer(text=f"Modifié par {interaction.user}", icon_url=interaction.user.display_avatar.url)
+        embed.set_thumbnail(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.stickers.gg%2Fstickers%2F8419-clone-salute.png&f=1&nofb=1&ipt=0b40d02fd337ae2daa49cede2bc6abea714b27929a6285948b878bd7273fc443")
 
         if message.embeds and message.embeds[0].image and message.embeds[0].image.url:
             embed.set_image(url=message.embeds[0].image.url)
