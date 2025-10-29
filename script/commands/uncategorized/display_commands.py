@@ -185,7 +185,8 @@ class FormateurButton(discord.ui.Button):
             "`/session-formation`\n"
             "`/candidature-specialite`\n"
             "`/specialite-validation`\n"
-            "`/ejecter-specialite`\n",
+            "`/ejecter-specialite`\n"
+            "`/afficher-specialite`\n",
             inline=False
         )
 
