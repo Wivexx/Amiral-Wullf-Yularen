@@ -41,6 +41,7 @@ from script.commands.bf2.specialites.candidature_specialite import CandidatureSp
 from script.commands.bf2.specialites.session_formation_launch import CommandeSessionFormationLauncher
 from script.commands.bf2.specialites.specialite_validation import SpecialiteValidationCommand
 from script.commands.bf2.specialites.ejecter_specialite import EjecterSpecialiteCommand
+from script.commands.bf2.specialites.display_spe import DisplaySpecialiteCommand
 
 from script.commands.bf2.moderation.report import ReportCommand
 
@@ -100,6 +101,7 @@ COMMANDS = [
     CommandeSessionFormationLauncher,
     SpecialiteValidationCommand,
     EjecterSpecialiteCommand,
+    DisplaySpecialiteCommand,
 
     ReportCommand,
 
