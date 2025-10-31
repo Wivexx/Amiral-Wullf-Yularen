@@ -6,6 +6,7 @@ from USEFUL_IDS import (
     ID_ROLE_RECRUE_COMMANDO, ID_ROLE_CRA
 )
 
+
 class SpecialitePaginationView(discord.ui.View):
     def __init__(self, embeds: list[discord.Embed], current_page: int = 0):
         super().__init__(timeout=180)
@@ -67,29 +68,50 @@ class DisplaySpecialiteCommand(commands.Cog):
             app_commands.Choice(name="👤 Afficher sans la mention", value=0)
         ]
     )
-    async def afficher_specialite(self, interaction: discord.Interaction, specialite: app_commands.Choice[int], mention: app_commands.Choice[int]):
+    async def afficher_specialite(
+        self, interaction: discord.Interaction,
+        specialite: app_commands.Choice[int],
+        mention: app_commands.Choice[int]
+    ):
         dict_reg = {reg: [] for reg in REGIMENTS_LIST_NAME}
         dict_reg["Sans régiment"] = []
 
         for member in interaction.guild.members:
             reg = None
             has_specialite = False
+            is_recrue = False
 
             for role in member.roles:
                 if role.name in REGIMENTS_LIST_NAME:
                     reg = role.name
-                if specialite.value == 2 and role.id in (ID_ROLE_JET, ID_ROLE_RECRUE_JET):
-                    has_specialite = True
-                elif specialite.value == 1 and role.id in (ID_ROLE_COMMANDO, ID_ROLE_RECRUE_COMMANDO):
-                    has_specialite = True
-                elif specialite.value == 0 and role.id == ID_ROLE_CRA:
-                    has_specialite = True
+
+                if specialite.value == 2:
+                    if role.id == ID_ROLE_JET:
+                        has_specialite = True
+                    elif role.id == ID_ROLE_RECRUE_JET:
+                        has_specialite = True
+                        is_recrue = True
+
+                elif specialite.value == 1:
+                    if role.id == ID_ROLE_COMMANDO:
+                        has_specialite = True
+                    elif role.id == ID_ROLE_RECRUE_COMMANDO:
+                        has_specialite = True
+                        is_recrue = True
+
+                elif specialite.value == 0:
+                    if role.id == ID_ROLE_CRA:
+                        has_specialite = True
 
             if has_specialite:
+                entry = (member, is_recrue)
                 if reg:
-                    dict_reg[reg].append(member)
+                    dict_reg[reg].append(entry)
                 else:
-                    dict_reg["Sans régiment"].append(member)
+                    dict_reg["Sans régiment"].append(entry)
+
+        for reg in dict_reg:
+            dict_reg[reg].sort(key=lambda x: x[0].joined_at or discord.utils.snowflake_time(x[0].id))
 
         embeds = []
         page_members = []
@@ -98,12 +120,14 @@ class DisplaySpecialiteCommand(commands.Cog):
 
         for regiment in REGIMENTS_LIST_NAME + ["Sans régiment"]:
             members_list = dict_reg[regiment]
+
             value = "\n".join(
-                "- " + (m.mention if mention.value else m.display_name)
-                for m in members_list
+                f"- {(m.mention if mention.value else m.display_name)}{' *`(recrue)`*' if is_recrue else ''}"
+                for m, is_recrue in members_list
             ) or "Aucun membre"
 
             section_text = f"__**{regiment}**__\n{value}\n\n"
+
             if current_size + len(section_text) > PAGE_LIMIT:
                 embed = discord.Embed(
                     title=f"Liste des {specialite.name}",
@@ -126,7 +150,11 @@ class DisplaySpecialiteCommand(commands.Cog):
             embeds.append(embed)
 
         if not embeds:
-            embeds = [discord.Embed(title=f"Liste des {specialite.name}", description="Aucun membre trouvé.", color=discord.Color.red())]
+            embeds = [discord.Embed(
+                title=f"Liste des {specialite.name}",
+                description="Aucun membre trouvé.",
+                color=discord.Color.red()
+            )]
 
         if len(embeds) == 1:
             await interaction.response.send_message(embed=embeds[0], ephemeral=True)
