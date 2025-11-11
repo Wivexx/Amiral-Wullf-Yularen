@@ -68,5 +68,5 @@ class EjecterSpecialiteCommand(commands.Cog):
         await interaction.response.send_message(f"{member.mention}", embed=embed)
 
         channel = self.bot.get_channel(ID_LOGS)
-        return await channel.send(f"{member.mention} a été retiré des :\n__**{specialite.name}**__\n||<@702493074013814784>||")
+        return await channel.send(f"{member.mention} a été retiré des :\n__**{specialite.name}**__\n")
 
