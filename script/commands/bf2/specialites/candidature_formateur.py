@@ -50,7 +50,7 @@ class CandidatureFormateurCommand(commands.Cog):
             await interaction.response.send_message(f"{member.mention}", embed=embed_validation)
 
             channel = self.bot.get_channel(ID_LOGS)
-            return await channel.send(f"{member.mention} a été accepté pour devenir :\n__**{recrue.value}**__\n")
+            return await channel.send(f"{member.mention} a été accepté pour devenir :\n__**🪖 Formateur**__\n")
 
 
         else:
