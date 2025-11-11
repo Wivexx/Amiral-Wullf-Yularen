@@ -54,6 +54,6 @@ class SpecialiteValidationCommand(commands.Cog):
                                          color=discord.Color.green())
         embed_validation.set_footer(text=f"Acceptée par {interaction.user}  •  Message temporaire", icon_url=interaction.user.display_avatar.url)
         await interaction.response.send_message(embed=embed_validation, ephemeral=True)
-        channel = self.bot.get_channel(ID_LOGS)
 
-        return await channel.send(f"{member.mention} a été accepté pour devenir :\n__**{recrue.value}**__\n||<@702493074013814784>||")
+        channel = self.bot.get_channel(ID_LOGS)
+        return await channel.send(f"{member.mention} a été accepté pour devenir :\n__**{recrue.value}**__\n")
