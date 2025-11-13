@@ -62,7 +62,8 @@ class DefaultButton(discord.ui.Button):
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
-                        value="`/emoji-info`\n"
+                        value="`/afficher-specialite`\n"
+                              "`/emoji-info`\n"
                               "`/membre-info`\n"
                               "`/user-info`\n"
                               "`/role-info`\n"
@@ -73,7 +74,7 @@ class DefaultButton(discord.ui.Button):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 25")
+        embed.set_footer(text="Total commandes: 26")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
@@ -185,8 +186,7 @@ class FormateurButton(discord.ui.Button):
             "`/session-formation`\n"
             "`/candidature-specialite`\n"
             "`/specialite-validation`\n"
-            "`/ejecter-specialite`\n"
-            "`/afficher-specialite`\n",
+            "`/ejecter-specialite`\n",
             inline=False
         )
 
@@ -266,7 +266,8 @@ class DisplayCommandsCommand(commands.Cog):
                         inline=False)
 
         embed.add_field(name="**┏—————— Utiles ——————┓**",
-                        value="`/emoji-info`\n"
+                        value="`/afficher-specialite`\n"
+                              "`/emoji-info`\n"
                               "`/membre-info`\n"
                               "`/user-info`\n"
                               "`/role-info`\n"
@@ -277,7 +278,7 @@ class DisplayCommandsCommand(commands.Cog):
                               "`/webhook-info`\n",
                         inline=False)
 
-        embed.set_footer(text="Total commandes: 25")
+        embed.set_footer(text="Total commandes: 26")
 
         user_roles_ids = [role.id for role in interaction.user.roles]
         is_staff = ID_ROLE_STAFF in user_roles_ids
