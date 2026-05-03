@@ -84,11 +84,6 @@ class ConfirmationView(discord.ui.View):
 
         view = discord.ui.View()
         view.add_item(discord.ui.Button(
-            label="📲 Lanceurs de session",
-            url="https://discord.com/channels/947567879442812928/1231619386649870336",
-            style=discord.ButtonStyle.link
-        ))
-        view.add_item(discord.ui.Button(
             label="🃏 Presets",
             url="https://discord.com/channels/947567879442812928/1145333227284856923",
             style=discord.ButtonStyle.link
