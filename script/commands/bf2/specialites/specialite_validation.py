@@ -3,10 +3,10 @@ from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
 from USEFUL_IDS import (ID_ROLE_JET, ID_ROLE_COMMANDO,
-                                            ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
-                                            ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                                            ID_ROLE_SPECIALITE,
-                                            ID_LOGS)
+                        ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
+                        ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
+                        ID_ROLE_SPECIALITE,
+                        ID_LOGS, ID_POLE_SPE)
 
 class SpecialiteValidationCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -22,7 +22,7 @@ class SpecialiteValidationCommand(commands.Cog):
         user_role = [role for role in interaction.user.roles]
         member_roles = [role for role in member.roles]
 
-        for_recrue_jet = True if recrue.value == "🛡 Jet-Trooper" else False
+        """for_recrue_jet = True if recrue.value == "🛡 Jet-Trooper" else False
 
         if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and for_recrue_jet:
             return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> pour utiliser cette commande.",
@@ -30,6 +30,11 @@ class SpecialiteValidationCommand(commands.Cog):
         if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id for role in user_role) and not for_recrue_jet:
             return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_COMMANDO}> pour utiliser cette commande.",
                 ephemeral=True)
+        """
+
+        if not any(ID_POLE_SPE == role.id for role in user_role):
+            return await interaction.response.send_message(
+            f"❌ Vous devez faire parti du pôle spécialité pour utiliser cette commande.", ephemeral=True)
 
         is_recrue_jet = False
         is_recrue_commando = False
