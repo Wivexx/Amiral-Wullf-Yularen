@@ -4,10 +4,11 @@ from discord import app_commands
 from discord.ext import commands
 import datetime
 from USEFUL_IDS import (ID_ANNONCE_SESSION_FORMATION,
-                                            ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
-                                            ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                                            CHECK_GREEN_REACT, LATE_REACT, RED_CROSS_REACT, IDK_REACT,
-                                            session_forma_commando_pics, session_forma_jet_pics, session_forma_jet_and_commando_pics)
+                        ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
+                        ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
+                        CHECK_GREEN_REACT, LATE_REACT, RED_CROSS_REACT, IDK_REACT,
+                        session_forma_commando_pics, session_forma_jet_pics, session_forma_jet_and_commando_pics,
+                        ID_POLE_SPE)
 
 
 class CommandeSessionFormationLauncher(commands.Cog):
@@ -40,7 +41,7 @@ class CommandeSessionFormationLauncher(commands.Cog):
         minute: app_commands.Choice[str],
         commentaire: str = ""
     ):
-        if recrue.value == "🛡 Recrue Jet-Trooper" and not any(role.id == ID_ROLE_FORMATEUR_JET for role in interaction.user.roles):
+        """if recrue.value == "🛡 Recrue Jet-Trooper" and not any(role.id == ID_ROLE_FORMATEUR_JET for role in interaction.user.roles):
             return await interaction.response.send_message(f"❌ Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> pour en lancer une.", ephemeral=True)
 
         if recrue.value == "🗡 Recrue Commando-Clone" and not any(role.id == ID_ROLE_FORMATEUR_COMMANDO for role in interaction.user.roles):
@@ -53,6 +54,11 @@ class CommandeSessionFormationLauncher(commands.Cog):
                 f"❌ Vous devez être <@&{ID_ROLE_FORMATEUR_COMMANDO}> __et__ <@&{ID_ROLE_FORMATEUR_JET}> pour en lancer une.",
                 ephemeral=True
             )
+        """
+
+        if not any(ID_POLE_SPE == role.id for role in lanceur.roles):
+            return await interaction.response.send_message(
+            f"❌ Vous devez faire parti du pôle spécialité pour utiliser cette commande.", ephemeral=True)
 
         if recrue.value == "🗡 Recrue Commando-Clone":
             MENTION = f"<@&{ID_ROLE_RECRUE_COMMANDO}>"
