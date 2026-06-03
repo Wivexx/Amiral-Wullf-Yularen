@@ -3,11 +3,11 @@ from discord.ext import commands
 from discord import app_commands
 from discord.ui import Button, View
 from USEFUL_IDS import (ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO,
-                                            ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                                            ID_ROLE_CRA, ID_ROLE_COMMANDO, ID_ROLE_JET,
-                                            ID_ROLE_SPECIALITE, ID_ROLE_DOUBLE_SPE,
-                                            ID_ROLE_GARDE,
-                                            ID_LOGS)
+                        ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
+                        ID_ROLE_CRA, ID_ROLE_COMMANDO, ID_ROLE_JET,
+                        ID_ROLE_SPECIALITE, ID_ROLE_DOUBLE_SPE,
+                        ID_ROLE_GARDE,
+                        ID_LOGS, ID_ROLE_APPRENTI_FORMATEUR, ID_POLE_SPE)
 
 class CandidatureSpecialiteCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -26,14 +26,19 @@ class CandidatureSpecialiteCommand(commands.Cog):
 
         user_role = [role for role in interaction.user.roles]
 
-        is_recrue_jet = True if recrue.value == "🛡 Recrue Jet-Trooper" else False
+        """is_recrue_jet = True if recrue.value == "🛡 Recrue Jet-Trooper" else False
 
-        if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and is_recrue_jet:
-            return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> pour utiliser cette commande.",
+        if not any(ID_ROLE_FORMATEUR_JET == role.id or ID_ROLE_APPRENTI_FORMATEUR == role.id for role in user_role) and is_recrue_jet:
+            return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> ou <@&{ID_ROLE_APPRENTI_FORMATEUR}> pour utiliser cette commande.",
                 ephemeral=True)
-        if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id for role in user_role) and not is_recrue_jet:
-            return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_COMMANDO}> pour utiliser cette commande.",
+        if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id or ID_ROLE_APPRENTI_FORMATEUR == role.id for role in user_role) and not is_recrue_jet:
+            return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_COMMANDO}> ou <@&{ID_ROLE_APPRENTI_FORMATEUR}> pour utiliser cette commande.",
                 ephemeral=True)
+        """
+
+        if not any(ID_POLE_SPE == role.id for role in user_role):
+            return await interaction.response.send_message(
+            f"❌ Vous devez faire parti du pôle spécialité pour utiliser cette commande.", ephemeral=True)
 
         if validation:
             member_roles = member.roles
