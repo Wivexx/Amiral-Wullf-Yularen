@@ -5,7 +5,7 @@ from discord.ui import Button, View
 from USEFUL_IDS import (ID_ROLE_FORMATEUR_JET, ID_ROLE_FORMATEUR_COMMANDO, ID_ROLE_INSTRUCTEUR,
                         ID_ROLE_SPECIALITE, ID_ROLE_JET, ID_ROLE_COMMANDO,
                         ID_ROLE_RECRUE_JET, ID_ROLE_RECRUE_COMMANDO,
-                        ID_ROLE_DOUBLE_SPE, ID_LOGS)
+                        ID_ROLE_DOUBLE_SPE, ID_LOGS, ID_POLE_SPE)
 
 class EjecterSpecialiteCommand(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -22,7 +22,7 @@ class EjecterSpecialiteCommand(commands.Cog):
 
         user_role = interaction.user.roles
 
-        if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and specialite.value == 1:
+        """if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and specialite.value == 1:
             return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> pour utiliser cette commande.",
                 ephemeral=True)
         if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id for role in user_role) and specialite.value == 0:
@@ -33,6 +33,11 @@ class EjecterSpecialiteCommand(commands.Cog):
             return await interaction.response.send_message(
                 f"{member.mention} ne fait parti d'aucune spécialité.",
                 ephemeral=True)
+        """
+
+        if not any(ID_POLE_SPE == role.id for role in user_role):
+            return await interaction.response.send_message(
+            f"❌ Vous devez faire parti du pôle spécialité pour utiliser cette commande.", ephemeral=True)
 
         is_jet = False
         is_commando = False
