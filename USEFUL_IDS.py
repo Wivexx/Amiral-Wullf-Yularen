@@ -4,6 +4,7 @@ ID_ROLE_REPUBLIQUE = 947568908490125362
 
 ID_ROLE_LANCEUR = 1212078209210908672
 
+ID_POLE_SPE = 1399491511007182978
 ID_ROLE_SPECIALITE = 962320832728793129
 ID_ROLE_JET = 962321028900601946
 ID_ROLE_COMMANDO = 962321045644255302
@@ -14,6 +15,7 @@ ID_ROLE_RECRUE_COMMANDO = 1138872599624028282
 ID_ROLE_APPRENTI_FORMATEUR = 1119726444990447757
 ID_ROLE_INSTRUCTEUR = 990179437184180266
 ID_ROLE_CRA = 962321037687685203
+ID_ROLE_WOOKIE = 1246092680178700388
 
 ID_ROLE_STAFF = 962630827232096308
 ID_HELPER = 983131549597831188
@@ -38,6 +40,7 @@ REGIMENTS_LIST_NAME = [
     "501ème Légion", "212ème bataillon d'attaque", "41ème corps d'élite", "104ème wolfpack", "327ème corps stellaire", "Garde de Coruscant", "91 corps de reconnaissance"
 ]
 ID_ROLE_GARDE = 1215072659608702977
+ID_ROLE_41 = 1245481435314520166
 ID_ROLE_ELITE = 1215074868345962546
 ID_ROLE_RECRUE = 1216333538522038374
 ID_ROLE_DOUBLE_SPE = 1264287171469115532
@@ -93,7 +96,6 @@ RED_CROSS_REACT = "🚫"
 IDK_REACT = "🤷‍♂️"
 
 
-
 # OTHER
 session_pics = [
             "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.EYnEMKDumO_MzcqSicvv7gHaDt%26pid%3DApi&f=1&ipt=6985444a0cf7c83e83c8b051c7e843f2dc8f6a19b0abc7739ca2c2ec24428c91&ipo=images",
@@ -112,7 +114,18 @@ session_pics = [
             "https://i.pinimg.com/1200x/e2/0d/bd/e20dbdd6ca4908316b9b57aedbb27966.jpg",
             "https://i.pinimg.com/736x/22/05/3f/22053f22c5868904ac037fc556aba7b7.jpg",
             "https://i.pinimg.com/1200x/36/c3/f7/36c3f78af276d992407f104c1c835517.jpg",
-            "https://i.pinimg.com/1200x/5a/c2/0b/5ac20bb1d1f9f1d4b758528635a17852.jpg"
+            "https://i.pinimg.com/1200x/5a/c2/0b/5ac20bb1d1f9f1d4b758528635a17852.jpg",
+            "https://i.pinimg.com/1200x/5f/71/ea/5f71ea3ca08ae9ff32096186bc1689b6.jpg",
+            "https://i.pinimg.com/1200x/07/3e/70/073e70bdd2e345cc5522f74d07a600d5.jpg"
+]
+
+session_pics_spatial = [
+            "https://i.pinimg.com/1200x/16/a9/28/16a92889746f83f73601844e52a806c3.jpg",
+            "https://i.pinimg.com/1200x/e4/32/48/e432484b8aa79eb2223922ffa6710fd7.jpg",
+            "https://i.pinimg.com/1200x/35/fc/43/35fc43ac97519f683ad6bd902aaa1bca.jpg",
+            "https://i.pinimg.com/1200x/c9/da/29/c9da29332ceb392101aaccc416ff06ca.jpg",
+            "https://i.pinimg.com/1200x/e4/0f/a7/e40fa77fff7bad8ec7048e300e1c991e.jpg",
+            "https://i.pinimg.com/736x/c9/67/b2/c967b213d3f77d86db4129943065cf42.jpg"
 ]
 
 session_forma_commando_pics = [
