@@ -26,9 +26,9 @@ class CandidatureSpecialiteCommand(commands.Cog):
 
         user_role = [role for role in interaction.user.roles]
 
-        """is_recrue_jet = True if recrue.value == "🛡 Recrue Jet-Trooper" else False
+        is_recrue_jet = True if recrue.value == "🛡 Recrue Jet-Trooper" else False
 
-        if not any(ID_ROLE_FORMATEUR_JET == role.id or ID_ROLE_APPRENTI_FORMATEUR == role.id for role in user_role) and is_recrue_jet:
+        """if not any(ID_ROLE_FORMATEUR_JET == role.id or ID_ROLE_APPRENTI_FORMATEUR == role.id for role in user_role) and is_recrue_jet:
             return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> ou <@&{ID_ROLE_APPRENTI_FORMATEUR}> pour utiliser cette commande.",
                 ephemeral=True)
         if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id or ID_ROLE_APPRENTI_FORMATEUR == role.id for role in user_role) and not is_recrue_jet:
