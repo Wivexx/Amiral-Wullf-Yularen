@@ -22,9 +22,9 @@ class SpecialiteValidationCommand(commands.Cog):
         user_role = [role for role in interaction.user.roles]
         member_roles = [role for role in member.roles]
 
-        """for_recrue_jet = True if recrue.value == "🛡 Jet-Trooper" else False
+        for_recrue_jet = True if recrue.value == "🛡 Jet-Trooper" else False
 
-        if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and for_recrue_jet:
+        """if not any(ID_ROLE_FORMATEUR_JET == role.id for role in user_role) and for_recrue_jet:
             return await interaction.response.send_message(f"Vous devez être <@&{ID_ROLE_FORMATEUR_JET}> pour utiliser cette commande.",
                 ephemeral=True)
         if not any(ID_ROLE_FORMATEUR_COMMANDO == role.id for role in user_role) and not for_recrue_jet:
